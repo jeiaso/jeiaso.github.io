@@ -4,56 +4,252 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jeia so</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <header>
-        <h1>jeia so</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">about</a></li>
-                <li><a href="#projects">projects</a></li>
-                <li><a href="#contact">contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<body class="bg-[#faf8f5] text-black min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+        <!-- Header Section -->
+        <header class="mb-8 sm:mb-10">
+            <div class="flex flex-col lg:flex-row lg:items-start lg:gap-6 mb-4">
+                <div class="flex-1">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3 text-left">
+                        hi, i'm jeia ♡
+                    </h1>
+                    <p class="text-sm sm:text-base mb-2 sm:mb-3 text-left leading-relaxed">
+                        expressing love through creation, and combining my passions for tech, art, and service through my work ˚₊· ͟͟͞͞➳❥
+                    </p>
+                    <p class="text-xs sm:text-sm mb-3 sm:mb-4 text-left italic">
+                        currently: completing undergraduate research @ the mechanics of soft materials lab + learning Figma to start developing branding for swe@ucla's evening with industry!
+                    </p>
+                    <div class="text-xs sm:text-sm space-y-1 text-left">
+                        <p>reach me at <a href="mailto:jeia@ucla.edu" class="text-purple-600 hover:text-purple-700 underline">jeia <at> ucla <dot> edu</a></p>
+                        <p>or at <a href="https://linkedin.com/in/jeiaso" target="_blank" class="text-purple-600 hover:text-purple-700 underline">linkedin.com/in/jeiaso</a></p>
+                        <p>find my resume <a href="#" target="_blank" class="text-purple-600 hover:text-purple-700 underline">here</a>!</p>
+                    </div>
+                </div>
+                <div class="mt-4 lg:mt-0 lg:flex-shrink-0">
+                    <img src="https://picsum.photos/300/300?random=1" alt="Jeia" 
+                         class="w-[180px] sm:w-[220px] lg:w-[260px] h-auto rounded-full mx-auto lg:mx-0">
+                </div>
+            </div>
+        </header>
 
-    <section id="about">
-        <h2>hi, my name is jeia!</h2>
-        <p>i aim to design ethical, people oriented products to give back to my communities. currently based in los angeles, ca as a first year undergraduate mechanical engineering major at ucla.</p>
-    </section>
+        <!-- Projects Section -->
+        <section class="mb-8 sm:mb-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-left">
+                my projects ⋆ ˚｡⋆୨୧˚
+            </h2>
+            
+            <!-- Drone Project -->
+            <div class="mb-6 sm:mb-8">
+                <div class="flex flex-col lg:flex-row lg:items-start lg:gap-6">
+                    <div class="flex-1 mb-3 lg:mb-0">
+                        <h3 class="text-xl sm:text-2xl font-bold mb-1">Drone</h3>
+                        <p class="text-purple-600 mb-2 text-xs sm:text-sm">March 2025: Engineering 1 Project</p>
+                        <p class="text-sm sm:text-base leading-relaxed">
+                            Designed, prototyped, and tested a drone optimized for speed and maneuverability. Created a CAD model of the drone using Fusion 360 software with 3 other students, and led construction and electronics management.
+                        </p>
+                    </div>
+                    <div class="lg:flex-shrink-0 lg:w-64">
+                        <img src="https://picsum.photos/400/300?random=2" alt="Drone project" 
+                             class="w-full h-auto rounded">
+                    </div>
+                </div>
+            </div>
 
-    <section id="projects">
-        <h2>previous projects</h2>
-        <h3>academic projects</h3>
-        <ul>
-            <li><a href="https://docs.google.com/document/d/1J3keLVFMARyNlrYj8yPQlTkTZXf0zpT5TSYn9_jkmYI/edit?usp=drive_link">CENSE: crowd sense</a></li>
-            <p>a sensor based system that tracks room occupancy, optimized for schools/campuses. system of sensors synced to an online platform for easy access. ranked top 30 in the 2023 entrepreneurship competition at dublin high school.</p>
-            <li><a href="https://docs.google.com/document/d/1b_niQjHHpxlo4deRGw7PoqTlz-bQVxWBJ4ucOS8r-PQ/edit?usp=sharing">PCB design: decision maker</a></li>
-            <p>pcb designed to mimic the function of a magic 8 ball to help its user make a decision or answer a question. project for honors digital electronics, completed in march 2024.</p>
-        </ul>
-        <h3>research</h3>
-        <ul>
-            <li><a>generating synthetic acoustic emissions from material damage</a></li>
-            <p>my introduction to writing a proper research paper: conducted research in a group of three at ucsb's summer research program under the guidance of phd students. created machine learning algorithms capable of producing the sound made when an object is broken at a specific point or at a specific angle.</p>
-            <p>*link unavailable; paper includes material from our phd student's unpublished research</p>
-            <li><a href="https://drive.google.com/file/d/16CUVf1rmexZoogBpK_1fBijQj27L7zX0/view?usp=drive_link">novel tools used in human-swarm interaction</a></li>
-            <p>informal research poster summarizing types of swarm robotics. completed at the California State Summer School for Math and Science (COSMOS) at ucsc in a group of three.</p>
-        </ul>
-        <h3>service/passion projects</h3>
-        <ul>
-            <li><a>[in progress]</a></li>
-        </ul>
-    </section>
+            <!-- Micromouse Project -->
+            <div class="mb-6 sm:mb-8">
+                <h3 class="text-xl sm:text-2xl font-bold mb-1">Micromouse</h3>
+                <p class="text-purple-600 mb-2 text-xs sm:text-sm">September 2024: Institute of Electrical and Electronics Engineers (IEEE) Project</p>
+                <p class="text-sm sm:text-base leading-relaxed">
+                    Created circuit schematic and designed printed circuit board using KiCAD. Chose and soldered surface mount devices and through hole components. Programmed maze solving algorithm using proportional-integral-derivation (PID) controller algorithm on CubeIDE.
+                </p>
+            </div>
 
-    <section id="contact">
-        <h2>contact me</h2>
-        <p><a href="mailto:jeia@ucla.edu">jeia at ucla dot edu</a></p>
-        <p><a href="https://www.linkedin.com/in/jeiaso/">linkedin.com/jeiaso</a></p>
-    </section>
+            <!-- PCB Design Project -->
+            <div class="mb-6 sm:mb-8">
+                <div class="flex flex-col lg:flex-row lg:items-start lg:gap-6">
+                    <div class="flex-1 mb-3 lg:mb-0">
+                        <h3 class="text-xl sm:text-2xl font-bold mb-1">PCB Design: Decision Maker</h3>
+                        <p class="text-purple-600 mb-2 text-xs sm:text-sm">March 2024: Honors Digital Electronics Project</p>
+                        <p class="text-sm sm:text-base leading-relaxed mb-3">
+                            Designed and prototyped a printed circuit board (PCB) that helps the user make a decision or answer a question. Function mimics that of a magic 8 ball. View the project documentation <a href="#" target="_blank" class="text-purple-600 hover:text-purple-700 underline">here</a>.
+                        </p>
+                    </div>
+                    <div class="lg:flex-shrink-0 lg:w-64">
+                        <img src="https://picsum.photos/400/300?random=3" alt="PCB Design project" 
+                             class="w-full h-auto rounded">
+                    </div>
+                </div>
+            </div>
 
-    <footer>
-        <p>&copy; updated 9/30/24</p>
-    </footer>
+            <!-- CENSE Project -->
+            <div class="mb-6 sm:mb-8">
+                <div class="flex flex-col lg:flex-row lg:items-start lg:gap-6">
+                    <div class="lg:flex-shrink-0 lg:w-40 mb-3 lg:mb-0 order-2 lg:order-1">
+                        <img src="https://picsum.photos/200/200?random=11" alt="CENSE logo" 
+                             class="w-full h-auto">
+                    </div>
+                    <div class="flex-1 order-1 lg:order-2">
+                        <h3 class="text-xl sm:text-2xl font-bold mb-1">CENSE: Crowd Sense</h3>
+                        <p class="text-purple-600 mb-2 text-xs sm:text-sm">April 2023: Dublin Engineering and Design Entrepreneurship Project</p>
+                        <p class="text-sm sm:text-base leading-relaxed">
+                            Created a sensor system used to monitor room capacity. Designed the interface of a connected website that would display the room capacity and generate analytics telling users when a room is likely to be full. Designed our project logo and presentation materials. View the project documentation <a href="#" target="_blank" class="text-purple-600 hover:text-purple-700 underline">here</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Productivity Points Project -->
+            <div class="mb-6 sm:mb-8">
+                <div class="flex flex-col lg:flex-row lg:items-start lg:gap-6">
+                    <div class="flex-1 mb-3 lg:mb-0">
+                        <h3 class="text-xl sm:text-2xl font-bold mb-1">Productivity Points: COVID Interactive Story</h3>
+                        <p class="text-purple-600 mb-2 text-xs sm:text-sm">October 2020 - November 2020: Computer Science Essentials Project</p>
+                        <p class="text-sm sm:text-base leading-relaxed">
+                            Designed an interactive story app encouraging users to use their time productively during quarantine by awarding points based on their decisions made. All artwork was hand-drawn. App developed using MIT App Inventor. View the project documentation <a href="#" target="_blank" class="text-purple-600 hover:text-purple-700 underline">here</a>.
+                        </p>
+                    </div>
+                    <div class="lg:flex-shrink-0 flex gap-2 justify-center lg:justify-start">
+                        <img src="https://picsum.photos/150/250?random=12" alt="App screen 1" 
+                             class="w-[80px] sm:w-[100px] h-auto rounded border-2 border-gray-200">
+                        <img src="https://picsum.photos/150/250?random=13" alt="App screen 2" 
+                             class="w-[80px] sm:w-[100px] h-auto rounded border-2 border-gray-200">
+                        <img src="https://picsum.photos/150/250?random=14" alt="App screen 3" 
+                             class="w-[80px] sm:w-[100px] h-auto rounded border-2 border-gray-200">
+                    </div>
+                </div>
+            </div>
+
+            <p class="mt-4 sm:mt-6 text-left">
+                <a href="#" target="_blank" class="text-purple-600 hover:text-purple-700 underline text-sm sm:text-base">
+                    Explore more technical projects I completed in high school here!
+                </a>
+            </p>
+        </section>
+
+        <!-- Research Section -->
+        <section class="mb-8 sm:mb-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-left">
+                research ﾟ+*:ꔫ:*﹤
+            </h2>
+            
+            <!-- 3D Printed Woven Domes -->
+            <div class="mb-6 sm:mb-8">
+                <h3 class="text-xl sm:text-2xl font-bold mb-1">Manufacturing and mechanics of 3D printed woven domes</h3>
+                <p class="text-purple-600 mb-2 text-xs sm:text-sm">June 2025: Summer Undergraduate Research Program (SURP), Samueli Research Scholars</p>
+                <p class="text-sm sm:text-base leading-relaxed mb-3">
+                    Created CAD models of woven shells using SolidWorks and simulated their behavior under indentation using Abaqus FEA. Fabricated shells with the UltiMaker S5 Fused Deposition Modeling 3D Printer using TPU and PVA filament. Tested printed samples against manually woven samples to verify that they have the same behavior under indentation. Once verified, produced designs manually infeasible to produce and tested to discover new mechanical behaviors.
+                </p>
+                <p class="text-sm sm:text-base leading-relaxed mb-4">
+                    I was fortunate to receive the First Place Best Poster Award and Research Presentation Honorable Mention at the end of the SURP program! View the SURP Research Journal <a href="#" target="_blank" class="text-purple-600 hover:text-purple-700 underline">here</a>, my poster <a href="#" target="_blank" class="text-purple-600 hover:text-purple-700 underline">here</a>, and my final presentation slides <a href="#" target="_blank" class="text-purple-600 hover:text-purple-700 underline">here</a>.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center">
+                    <div class="flex items-center gap-2 sm:gap-3">
+                        <img src="https://picsum.photos/150/150?random=4" alt="Woven shell 1" 
+                             class="w-[80px] sm:w-[100px] h-auto">
+                        <span class="text-xl">+</span>
+                        <img src="https://picsum.photos/150/150?random=15" alt="Woven shell 2" 
+                             class="w-[80px] sm:w-[100px] h-auto">
+                        <span class="text-xl">→</span>
+                        <img src="https://picsum.photos/150/150?random=16" alt="Woven shell 3" 
+                             class="w-[80px] sm:w-[100px] h-auto">
+                    </div>
+                    <img src="https://picsum.photos/300/200?random=5" alt="Award photo" 
+                         class="w-full sm:w-[200px] h-auto rounded">
+                </div>
+            </div>
+
+            <!-- Acoustic Emissions -->
+            <div class="mb-6 sm:mb-8">
+                <h3 class="text-xl sm:text-2xl font-bold mb-1">Generating synthetic acoustic emissions from material damage</h3>
+                <p class="text-purple-600 mb-2 text-xs sm:text-sm">July 2023: UCSB Summer Research Academies, Track 6: Decoding the Black Box</p>
+                <p class="text-sm sm:text-base leading-relaxed mb-3">
+                    Conducted research with two other students under the guidance of PhD students. Researched machine learning algorithms, and developed a program capable of producing the sound made when an object is broken to help with structural monitoring and material testing.
+                </p>
+                <p class="text-xs sm:text-sm text-gray-600 italic">
+                    *Link unavailable; our research included unpublished data of our PhD student mentor and cannot be accessed without permission from both him and the SRA program.
+                </p>
+            </div>
+
+            <!-- Human-Swarm Interaction -->
+            <div class="mb-6 sm:mb-8">
+                <h3 class="text-xl sm:text-2xl font-bold mb-1">Novel tools used in human-swarm interaction</h3>
+                <p class="text-purple-600 mb-2 text-xs sm:text-sm">July 2022: California State Summer School for Math and Science (COSMOS) at UCSC</p>
+                <p class="text-sm sm:text-base leading-relaxed">
+                    Researched and summarized the applications of swarm robotics. Designed and wrote an informal research poster with two other students. View the poster <a href="#" target="_blank" class="text-purple-600 hover:text-purple-700 underline">here</a>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Design Work Section -->
+        <section class="mb-8 sm:mb-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-left">
+                design work ‧₊˚❀༉‧₊˚.
+            </h2>
+            <p class="text-sm sm:text-base mb-4 sm:mb-6 text-left leading-relaxed max-w-3xl">
+                i first started engaging with the communities around me through art; this included advocacy graphics for clubs as we navigated the pandemic online, to annual school and event merchandise. below is a gallery of some of my favorite pieces i've worked on! hover over the picture to learn more about the piece, what is was used for, and what tools were used in its creation.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="designGallery">
+                <div class="design-item relative overflow-hidden cursor-pointer group">
+                    <img src="https://picsum.photos/400/300?random=6" alt="Design work" 
+                         class="w-full h-[200px] sm:h-[250px] object-cover">
+                    <div class="design-overlay absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent text-white p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-xs leading-relaxed">Hover to see design details</p>
+                    </div>
+                </div>
+                <div class="design-item relative overflow-hidden cursor-pointer group">
+                    <img src="https://picsum.photos/400/300?random=7" alt="Design work" 
+                         class="w-full h-[200px] sm:h-[250px] object-cover">
+                    <div class="design-overlay absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent text-white p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-xs leading-relaxed">Hover to see design details</p>
+                    </div>
+                </div>
+                <div class="design-item relative overflow-hidden cursor-pointer group">
+                    <img src="https://picsum.photos/400/300?random=8" alt="Design work" 
+                         class="w-full h-[200px] sm:h-[250px] object-cover">
+                    <div class="design-overlay absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent text-white p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-xs leading-relaxed">Hover to see design details</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Art Section -->
+        <section class="mb-8 sm:mb-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-left">
+                personal art ♥*♡∞:｡.｡
+            </h2>
+            <p class="text-sm sm:text-base mb-4 sm:mb-6 text-left leading-relaxed max-w-3xl">
+                in my free time, i love drawing my friends and family through traditional and digital art; to me, it's my way of showing others exactly how loved they are from my perspective. below are my favorite pieces so far!
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                <div>
+                    <img src="https://picsum.photos/600/800?random=9" alt="Digital portrait of siblings" 
+                         class="w-full h-auto mb-2">
+                    <p class="text-xs sm:text-sm text-gray-700 text-left italic">
+                        digital portrait of my siblings and i (fun fact: i'm the youngest of three!)
+                    </p>
+                </div>
+                <div>
+                    <img src="https://picsum.photos/600/800?random=10" alt="Traditional drawing of best friend" 
+                         class="w-full h-auto mb-2">
+                    <p class="text-xs sm:text-sm text-gray-700 text-left italic">
+                        traditional drawing of my favorite picture of my best friend and i :)
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-left py-4 sm:py-6 mt-8 sm:mt-10 border-t border-gray-300">
+            <p class="text-xs sm:text-sm text-gray-600">
+                ☆.｡.:* last updated 9/20/2025 ｡･:*:･ﾟ★,｡･:*:･ﾟ☆
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
