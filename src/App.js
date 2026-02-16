@@ -55,7 +55,7 @@ export default function Portfolio() {
             </div>
           </div>
           <div className="flex-shrink-0">
-            <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-white shadow-xl">
+            <div className="w-70 h-70 rounded-full overflow-hidden border-4 border-white shadow-xl">
               <img src="/JeiaSo_Headshot.jpg" alt="Jeia So" className="w-full h-full object-cover" />
             </div>
           </div>
