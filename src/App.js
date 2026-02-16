@@ -92,9 +92,9 @@ export default function Portfolio() {
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-3">
-                  <a href="#" className="text-sm text-blue-600 hover:text-blue-700 underline">View Research Journal</a>
-                  <a href="#" className="text-sm text-blue-600 hover:text-blue-700 underline">View Poster</a>
-                  <a href="#" className="text-sm text-blue-600 hover:text-blue-700 underline">View Presentation</a>
+                  <a href="https://drive.google.com/file/d/1eeUwMGLN8WFmXxJquU1SwAg6ZmSr8_fg/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Research Journal</a>
+                  <a href="https://drive.google.com/file/d/1s_JpJRAaWY_l13-_h5D5Hjck3oEBxcoo/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Poster</a>
+                  <a href="https://drive.google.com/file/d/1Icubpum0WNAE4NQvhcMv6eTpGyR5jOBc/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Presentation</a>
                 </div>
               </div>
               <div className="flex-shrink-0">
