@@ -56,8 +56,7 @@ export default function Portfolio() {
           </div>
           <div className="flex-shrink-0">
             <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-white shadow-xl">
-              <div className="w-full h-full bg-gradient-to-br from-pink-200 to-purple-200 flex items-center justify-center text-6xl">
-                👩‍💻
+              <img src="/JeiaSo_Headshot.jpg" alt="Jeia So" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
@@ -101,7 +100,7 @@ export default function Portfolio() {
               </div>
               <div className="flex-shrink-0">
                 <div className="w-72 h-48 bg-gradient-to-br from-purple-200 to-pink-200 rounded-lg flex items-center justify-center text-4xl shadow-md">
-                  🔬
+                  <img src="/surp.jpg" alt="surp" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
