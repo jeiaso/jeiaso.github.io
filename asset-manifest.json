@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/jeiaso/jeiaso.github.io/static/css/main.e6c13ad2.css",
+    "main.js": "/jeiaso/jeiaso.github.io/static/js/main.7fda1926.js",
+    "static/js/453.15a626a8.chunk.js": "/jeiaso/jeiaso.github.io/static/js/453.15a626a8.chunk.js",
+    "index.html": "/jeiaso/jeiaso.github.io/index.html",
+    "main.e6c13ad2.css.map": "/jeiaso/jeiaso.github.io/static/css/main.e6c13ad2.css.map",
+    "main.7fda1926.js.map": "/jeiaso/jeiaso.github.io/static/js/main.7fda1926.js.map",
+    "453.15a626a8.chunk.js.map": "/jeiaso/jeiaso.github.io/static/js/453.15a626a8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.7fda1926.js"
+  ]
+}
