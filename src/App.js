@@ -151,7 +151,7 @@ export default function Portfolio() {
               <h3 className="text-xl font-bold text-pink-600 mb-2">Drone</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">March 2025: Engineering 1 Project</p>
               <div className="w-full h-40 bg-gradient-to-br from-blue-200 to-cyan-200 rounded-lg mb-4 flex items-center justify-center text-5xl">
-                🚁
+                <img src="/drone.avif" alt="drone" className="w-full h-full object-cover" />
               </div>
               <p className="text-gray-700 text-sm leading-relaxed">
                 Designed, prototyped, and tested a drone optimized for speed and maneuverability. 
@@ -296,7 +296,7 @@ export default function Portfolio() {
             {/* Digital Portrait */}
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="h-72 bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 flex items-center justify-center text-8xl">
-                👨‍👩‍👧
+                <img src="/jibbies.avif" alt="jibbies" className="w-full h-full object-cover" />
               </div>
               <div className="p-6">
                 <p className="text-gray-700 text-lg">
@@ -308,7 +308,7 @@ export default function Portfolio() {
             {/* Traditional Drawing */}
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="h-72 bg-gradient-to-br from-yellow-200 via-orange-200 to-red-200 flex items-center justify-center text-8xl">
-                👯‍♀️
+                <img src="/youmei.avif" alt="youmei" className="w-full h-full object-cover" />
               </div>
               <div className="p-6">
                 <p className="text-gray-700 text-lg">
