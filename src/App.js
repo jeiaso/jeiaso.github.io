@@ -215,6 +215,33 @@ export default function Portfolio() {
 
             {/* Productivity Points */}
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow md:col-span-2">
+              <h3 className="text-xl font-bold text-pink-600 mb-2">VEX Robotics Robot: 5327SWAGon</h3>
+              <p className="text-sm text-gray-600 mb-3 font-semibold">
+                April 2022 - April 2023: Gael Force Robotics at Dublin High School
+              </p>
+              <div className="grid md:grid-cols-2 gap-8">
+                <img src="/robot.heic" alt="cense" className="w-full h-auto" />
+                <img src="/states.heic" alt="cense" className="w-full h-auto" />
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-3">
+                Led team of 15 engineering students across different grades and experience levels. Designed, prototyped, and built subsystems
+                optimized for the 2022-2023 VEX game Spin Up, including drivetrain, roller, conveyor belt, and fly wheel mechanisms. Completed all project documentation. 
+                Mentored first year interns.
+              </p>
+              <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 border-l-4 border-yellow-400 p-4 rounded-r-lg mb-4">
+                  <p className="text-gray-700 font-semibold">
+                    🏆 2x Excellence Award Winner!
+                    🏆 Design Award at State Championships!
+                    🏆 Qualified to 2022-23 VEX World Championships!
+                  </p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <a href="https://docs.google.com/presentation/d/1wVfwRzYSYwz4N3A3Uk0cnaeJ6crQhOLYICYAlhmDv4A/edit?usp=sharing" className="text-sm text-blue-600 hover:text-blue-700 underline">View Notebook/Documentation</a>
+              </div> 
+            </div>
+
+            {/* Productivity Points
+            <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow md:col-span-2">
               <h3 className="text-xl font-bold text-pink-600 mb-2">Productivity Points: COVID Interactive Story</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">
                 October 2020 - November 2020: Computer Science Essentials Project
@@ -235,7 +262,7 @@ export default function Portfolio() {
                 by awarding points based on their decisions made. All artwork was hand-drawn. App developed using MIT App Inventor.
               </p>
               <a href="https://docs.google.com/document/d/1bFh9uz6_mJyjWci3zQRUlIUNJe16WOwJycIqxFh8w0Q/edit?usp=sharing" className="text-sm text-blue-600 hover:text-blue-700 underline">View Documentation</a>
-            </div>
+            </div> */}
           </div>
 
           <div className="mt-8 text-center">
