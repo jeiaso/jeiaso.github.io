@@ -29,8 +29,7 @@ export default function Portfolio() {
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="flex-1">
             <h2 className="text-5xl font-bold mb-6 flex items-center gap-3">
-              hi, i'm jeia 
-              <Heart className="text-pink-500 fill-pink-500" size={40} />
+              hi, i'm jeia ♡
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
               expressing love through creation, and combining my passions for tech, art, and service through my work ˚₊· ͟͟͞͞➳❥
@@ -97,7 +96,7 @@ export default function Portfolio() {
                 </div>
               </div>
               <div className="flex-shrink-0">
-                <div className="w-72 h-48 bg-gradient-to-br from-purple-200 to-pink-200 rounded-lg flex items-center justify-center text-4xl shadow-md">
+                <div className="w-144 h-96 bg-gradient-to-br from-purple-200 to-pink-200 rounded-lg flex items-center justify-center text-4xl shadow-md">
                   <img src="/surp.avif" alt="surp" className="w-full h-full object-cover" />
                 </div>
               </div>
