@@ -165,7 +165,7 @@ export default function Portfolio() {
               <h3 className="text-xl font-bold text-pink-600 mb-2">Micromouse</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">September 2024: IEEE Project</p>
               <div className="w-full h-40 bg-gradient-to-br from-purple-200 to-pink-200 rounded-lg mb-4 flex items-center justify-center text-5xl">
-                🤖
+                <img src="/mm.png" alt="mm" className="w-full h-auto" />
               </div>
               <p className="text-gray-700 text-sm leading-relaxed">
                 Created circuit schematic and designed printed circuit board using KiCAD. 
