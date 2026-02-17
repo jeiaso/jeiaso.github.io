@@ -181,7 +181,7 @@ export default function Portfolio() {
               <h3 className="text-xl font-bold text-pink-600 mb-2">PCB Design: Decision Maker</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">March 2024: Honors Digital Electronics Project</p>
               <div className="w-full h-40 bg-gradient-to-br from-green-200 to-teal-200 rounded-lg mb-4 flex items-center justify-center text-5xl">
-                🎱
+                <img src="/8ball.jpg" alt="8ball" className="w-full h-full object-cover" />
               </div>
               <p className="text-gray-700 text-sm leading-relaxed mb-3">
                 Designed and prototyped a printed circuit board (PCB) that helps the user make a decision or answer a question. 
@@ -198,13 +198,18 @@ export default function Portfolio() {
               <h3 className="text-xl font-bold text-pink-600 mb-2">CENSE: Crowd Sense</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">April 2023: Dublin Engineering Project</p>
               <div className="w-full h-40 bg-gradient-to-br from-orange-200 to-red-200 rounded-lg mb-4 flex items-center justify-center text-5xl">
-                👥
+                <img src="/cense.jpg" alt="cense" className="w-full h-full object-cover" />
               </div>
               <p className="text-gray-700 text-sm leading-relaxed mb-3">
                 Created a sensor system used to monitor room capacity. 
                 Designed the interface of a connected website that would display the room capacity and generate analytics 
                 telling users when a room is likely to be full. Designed project logo and presentation materials.
               </p>
+              <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 border-l-4 border-yellow-400 p-4 rounded-r-lg mb-4">
+                  <p className="text-gray-700 font-semibold">
+                    🏆 Top 30 Projects at the 2023 DEDA Engineering Competition!
+                  </p>
+              </div>
               <a href="https://drive.google.com/file/d/1Ayj9Dwch33BfMiX2iTt1Xse702xu9hZ9/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Documentation</a>
             </div>
 
