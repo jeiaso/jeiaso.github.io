@@ -153,7 +153,7 @@ export default function Portfolio() {
               <div className="bg-gradient-to-br from-blue-200 to-cyan-200 rounded-2xl overflow-hidden mb-4">
                 <img src="/drone.avif" alt="drone" className="w-full h-auto" />
               </div>
-              <p className="text-gray-700 text-sm leading-relaxed">
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">
                 Designed, prototyped, and tested a drone optimized for speed and maneuverability. 
                 Created a CAD model of the drone using Fusion 360 software with 3 other students, 
                 and led construction and electronics management.
