@@ -116,6 +116,7 @@ export default function Portfolio() {
               Conducted research with two other students under the guidance of PhD students. 
               Researched machine learning algorithms, and developed a program capable of producing the sound made when an object 
               is broken to help with structural monitoring and material testing.
+
             </p>
             <div className="flex flex-wrap gap-3">
               <a href="https://docs.google.com/document/d/1xjN5wKOKfAcAd5AorJRHQzJotGT6L9aF6UKblV2_8I0/edit?usp=drivesdk" className="text-sm text-blue-600 hover:text-blue-700 underline">View Research Paper</a>
@@ -323,9 +324,9 @@ export default function Portfolio() {
 
             {/* Traditional Drawing */}
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-              <div className="h-72 bg-gradient-to-br from-yellow-200 via-orange-200 to-red-200 flex items-center justify-center text-8xl">
-                <img src="/youmei.avif" alt="youmei" className="w-full h-full object-cover" />
-              </div>
+            <div className="bg-gradient-to-br from-yellow-200 via-orange-200 to-red-200 rounded-2xl overflow-hidden">
+              <img src="/youmei.avif" alt="youmei" className="w-full h-auto" />
+            </div>
               <div className="p-6">
                 <p className="text-gray-700 text-lg">
                   traditional drawing of my favorite picture of my best friend and i :)
