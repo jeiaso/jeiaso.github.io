@@ -164,7 +164,7 @@ export default function Portfolio() {
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold text-pink-600 mb-2">Micromouse</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">September 2024: IEEE Project</p>
-              <div className="w-full h-40 bg-gradient-to-br from-purple-200 to-pink-200 rounded-lg mb-4 flex items-center justify-center text-5xl">
+              <div className="bg-gradient-to-br from-purple-200 to-pink-200 rounded-2x1 overflow-hidden">
                 <img src="/mm.png" alt="mm" className="w-full h-auto" />
               </div>
               <p className="text-gray-700 text-sm leading-relaxed">
