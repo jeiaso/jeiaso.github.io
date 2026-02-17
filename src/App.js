@@ -102,14 +102,14 @@ export default function Portfolio() {
 
           <div className="grid md:grid-cols-2 gap-8">
           {/* Research 2 */}
-          <div className="mb-12 p-8 bg-white rounded-2xl shadow-lg">
+          <div className="p-8 bg-white rounded-2xl shadow-lg">
             <h3 className="text-2xl font-bold text-purple-600 mb-3">
               Generating synthetic acoustic emissions from material damage
             </h3>
             <p className="text-sm text-gray-600 mb-4 font-semibold">
               July 2023: UCSB Summer Research Academies, Track 6: Decoding the Black Box
             </p>
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-gray-700 leading-relaxed mb-4">
               Conducted research with two other students under the guidance of PhD students. 
               Researched machine learning algorithms, and developed a program capable of producing the sound made when an object 
               is broken to help with structural monitoring and material testing.
@@ -145,7 +145,6 @@ export default function Portfolio() {
           <h2 className="text-4xl font-bold mb-12 flex items-center gap-3">
             my projects ⋆ ˚｡⋆୨୧˚
           </h2>
-
           <div className="grid md:grid-cols-2 gap-8">
             {/* Drone Project */}
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
