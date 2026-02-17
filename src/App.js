@@ -94,7 +94,7 @@ export default function Portfolio() {
               </div>
               <div className="flex-shrink-0">
                 <div className="w-144 h-96 bg-gradient-to-br from-purple-200 to-pink-200 rounded-lg flex items-center justify-center text-4xl shadow-md">
-                  <img src="/surp.avif" alt="surp" className="w-full h-full object-cover" />
+                  <img src="/shell.gif" alt="surp" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
