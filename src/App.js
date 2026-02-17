@@ -66,8 +66,7 @@ export default function Portfolio() {
       <section id="research" className="bg-white/50 backdrop-blur-sm py-16">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-4xl font-bold mb-12 flex items-center gap-3">
-            research 
-            <Sparkles className="text-purple-500" size={32} />
+            research ﾟ+*:ꔫ:*﹤
           </h2>
 
           {/* Research 1 */}
@@ -118,6 +117,10 @@ export default function Portfolio() {
               Researched machine learning algorithms, and developed a program capable of producing the sound made when an object 
               is broken to help with structural monitoring and material testing.
             </p>
+            <div className="flex flex-wrap gap-3">
+              <a href="https://docs.google.com/document/d/1xjN5wKOKfAcAd5AorJRHQzJotGT6L9aF6UKblV2_8I0/edit?usp=drivesdk" className="text-sm text-blue-600 hover:text-blue-700 underline">View Research Paper</a>
+              <a href="https://docs.google.com/presentation/d/1RWF7IT34EElPWP2nnUTv3scwTptuB9F0Ha5p9slhLUs/edit?usp=drivesdk" className="text-sm text-blue-600 hover:text-blue-700 underline">View Presentation</a>
+            </div>
           </div>
 
           {/* Research 3 */}
@@ -132,7 +135,7 @@ export default function Portfolio() {
               Researched and summarized the applications of swarm robotics. 
               Designed and wrote an informal research poster with two other students.
             </p>
-            <a href="#" className="text-sm text-blue-600 hover:text-blue-700 underline">View Poster</a>
+            <a href="https://drive.google.com/file/d/16CUVf1rmexZoogBpK_1fBijQj27L7zX0/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Poster</a>
           </div>
         </div>
       </section>
@@ -141,8 +144,7 @@ export default function Portfolio() {
       <section id="projects" className="py-16">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-4xl font-bold mb-12 flex items-center gap-3">
-            my projects 
-            <Star className="text-pink-500 fill-pink-500" size={32} />
+            my projects ⋆ ˚｡⋆୨୧˚
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -185,7 +187,8 @@ export default function Portfolio() {
                 Designed and prototyped a printed circuit board (PCB) that helps the user make a decision or answer a question. 
                 Function mimics that of a magic 8 ball.
               </p>
-              <a href="#" className="text-sm text-blue-600 hover:text-blue-700 underline">View Documentation</a>
+              <a href="https://drive.google.com/file/d/1lXibV16pjCSTEqPKoAZqpG72rVY5jK6e/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Project Demo</a>
+              <a href="https://docs.google.com/document/d/1b_niQjHHpxlo4deRGw7PoqTlz-bQVxWBJ4ucOS8r-PQ/edit?tab=t.0" className="text-sm text-blue-600 hover:text-blue-700 underline">View Documentation</a>
             </div>
 
             {/* CENSE */}
@@ -200,7 +203,7 @@ export default function Portfolio() {
                 Designed the interface of a connected website that would display the room capacity and generate analytics 
                 telling users when a room is likely to be full. Designed project logo and presentation materials.
               </p>
-              <a href="#" className="text-sm text-blue-600 hover:text-blue-700 underline">View Documentation</a>
+              <a href="https://drive.google.com/file/d/1Ayj9Dwch33BfMiX2iTt1Xse702xu9hZ9/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Documentation</a>
             </div>
 
             {/* Productivity Points */}
@@ -224,7 +227,7 @@ export default function Portfolio() {
                 Designed an interactive story app encouraging users to use their time productively during quarantine 
                 by awarding points based on their decisions made. All artwork was hand-drawn. App developed using MIT App Inventor.
               </p>
-              <a href="#" className="text-sm text-blue-600 hover:text-blue-700 underline">View Documentation</a>
+              <a href="https://docs.google.com/document/d/1bFh9uz6_mJyjWci3zQRUlIUNJe16WOwJycIqxFh8w0Q/edit?usp=sharing" className="text-sm text-blue-600 hover:text-blue-700 underline">View Documentation</a>
             </div>
           </div>
 
@@ -276,6 +279,12 @@ export default function Portfolio() {
               </div>
             ))}
           </div>
+          <div className="mt-8 text-center">
+            <a href="https://www.behance.net/jeiaso" 
+               className="inline-block px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full font-semibold hover:shadow-lg transition-shadow">
+              Explore my full graphic design portfolio →
+            </a>
+          </div>
         </div>
       </section>
 
@@ -324,7 +333,7 @@ export default function Portfolio() {
       <footer className="bg-gradient-to-r from-pink-100 to-purple-100 py-8 mt-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-gray-600">
-            ☆.｡.:* last updated 1/20/2026 ｡･:*:･ﾟ★,｡･:*:･ﾟ☆
+            ☆.｡.:* last updated 2/16/2026 ｡･:*:･ﾟ★,｡･:*:･ﾟ☆
           </p>
         </div>
       </footer>
