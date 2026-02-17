@@ -293,18 +293,15 @@ export default function Portfolio() {
               { image: 'kapwa25.jpg', color: 'from-blue-300 to-cyan-300', title: 'Design Tool: Procreate' },
               { image: '/dial.jpg', color: 'from-yellow-300 to-orange-300', title: 'Design Tool: Procreate' }
             ].map((item, idx) => (
-              <div 
+              <div
                 key={idx}
-                className="relative aspect-square bg-gradient-to-br rounded-lg shadow-md hover:shadow-xl transition-all cursor-pointer group"
-                style={{ backgroundImage: `linear-gradient(to bottom right, var(--tw-gradient-stops))` }}
+                className="relative aspect-square rounded-lg shadow-md overflow-hidden cursor-pointer"
                 onMouseEnter={() => setHoveredImage(idx)}
                 onMouseLeave={() => setHoveredImage(null)}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.color} rounded-lg flex items-center justify-center text-6xl`}>
-                  {item.emoji}
-                </div>
+                <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
                 {hoveredImage === idx && (
-                  <div className="absolute inset-0 bg-black/70 rounded-lg flex items-center justify-center p-4 transition-opacity">
+                  <div className="absolute inset-0 bg-black/70 rounded-lg flex items-center justify-center p-4">
                     <p className="text-white text-center font-semibold">{item.title}</p>
                   </div>
                 )}
