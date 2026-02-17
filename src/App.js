@@ -25,38 +25,38 @@ export default function Portfolio() {
       </header>
 
       {/* Hero Section */}
-      <section id="about" className="max-w-6xl mx-auto px-6 py-16">
-        <div className="flex flex-col md:flex-row items-center gap-12">
-          <div className="flex-1">
-            <h2 className="text-5xl font-bold mb-6 flex items-center gap-3">
-              hi, i'm jeia ♡
-            </h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              expressing love through creation, and combining my passions for tech, art, and service through my work ˚₊· ͟͟͞͞➳❥ specifically interested in <span className="font-semibold text-purple-600">product design</span>, 
-              <span className="font-semibold text-purple-600"> entertainment engineering</span>, and 
-              <span className="font-semibold text-purple-600"> robotics/bionics</span>!
-            </p>
-            <p className="text-gray-700 mb-4">
-              <span className="font-semibold">currently:</span> researching @ the mechanics of soft materials lab + 
-              designing a temperature controlled desk fan for creativelabs@ucla
-            </p>
-            <div className="flex gap-4 items-center text-gray-700">
-              <Mail size={20} className="text-pink-500" />
-              <span>jeia @ ucla . edu</span>
-              <a href="https://linkedin.com/in/jeiaso" target="_blank" rel="noopener noreferrer" 
-                 className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors">
-                <Linkedin size={20} />
-                linkedin.com/in/jeiaso
-              </a>
-            </div>
-          </div>
-          <div className="flex-shrink-0">
-            <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-white shadow-xl">
-              <img src="/JeiaSo_Headshot.jpg" alt="Jeia So" className="w-full h-full object-cover" />
-            </div>
-          </div>
-        </div>
-      </section>
+<section id="about" className="max-w-6xl mx-auto px-6 py-16">
+  <div className="flex flex-col md:flex-row items-center gap-12">
+    <div className="flex-1 min-w-0">
+      <h2 className="text-5xl font-bold mb-6 flex items-center gap-3">
+        hi, i'm jeia ♡
+      </h2>
+      <p className="text-lg text-gray-700 leading-relaxed mb-6">
+        expressing love through creation, and combining my passions for tech, art, and service through my work ˚₊· ͟͟͞͞➳❥ specifically interested in <span className="font-semibold text-purple-600">product design</span>, 
+        <span className="font-semibold text-purple-600"> entertainment engineering</span>, and 
+        <span className="font-semibold text-purple-600"> robotics/bionics</span>!
+      </p>
+      <p className="text-gray-700 mb-4">
+        <span className="font-semibold">currently:</span> researching @ the mechanics of soft materials lab + 
+        designing a temperature controlled desk fan for creativelabs@ucla
+      </p>
+      <div className="flex gap-4 items-center text-gray-700">
+        <Mail size={20} className="text-pink-500" />
+        <span>jeia @ ucla . edu</span>
+        <a href="https://linkedin.com/in/jeiaso" target="_blank" rel="noopener noreferrer" 
+           className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors">
+          <Linkedin size={20} />
+          linkedin.com/in/jeiaso
+        </a>
+      </div>
+    </div>
+    <div className="flex-none w-80 h-80">
+      <div className="w-full h-full rounded-full overflow-hidden border-4 border-white shadow-xl">
+        <img src="/JeiaSo_Headshot.jpg" alt="Jeia So" className="w-full h-full object-cover" />
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Research Section */}
       <section id="research" className="bg-white/50 backdrop-blur-sm py-16">
