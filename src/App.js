@@ -153,8 +153,8 @@ export default function Portfolio() {
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold text-pink-600 mb-2">Drone</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">March 2025: Engineering 1 Project</p>
-              <div className="w-full h-40 bg-gradient-to-br from-blue-200 to-cyan-200 rounded-lg mb-4 flex items-center justify-center text-5xl">
-                <img src="/drone.avif" alt="drone" className="w-full h-full object-cover" />
+              <div className="bg-gradient-to-br from-blue-200 to-cyan-200 rounded-2x1 overflow-hidden">
+                <img src="/drone.avif" alt="drone" className="w-full h-auto" />
               </div>
               <p className="text-gray-700 text-sm leading-relaxed">
                 Designed, prototyped, and tested a drone optimized for speed and maneuverability. 
@@ -181,8 +181,8 @@ export default function Portfolio() {
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold text-pink-600 mb-2">PCB Design: Decision Maker</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">March 2024: Honors Digital Electronics Project</p>
-              <div className="w-full h-40 bg-gradient-to-br from-green-200 to-teal-200 rounded-lg mb-4 flex items-center justify-center text-5xl">
-                <img src="/8ball.jpg" alt="8ball" className="w-full h-full object-cover" />
+              <div className="bg-gradient-to-br from-green-200 to-teal-200 rounded-2x1 overflow-hidden">
+                <img src="/8ball.png" alt="8ball" className="w-full h-auto" />
               </div>
               <p className="text-gray-700 text-sm leading-relaxed mb-3">
                 Designed and prototyped a printed circuit board (PCB) that helps the user make a decision or answer a question. 
@@ -198,8 +198,8 @@ export default function Portfolio() {
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold text-pink-600 mb-2">CENSE: Crowd Sense</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">April 2023: Dublin Engineering Project</p>
-              <div className="w-full h-40 bg-gradient-to-br from-orange-200 to-red-200 rounded-lg mb-4 flex items-center justify-center text-5xl">
-                <img src="/cense.jpg" alt="cense" className="w-full h-full object-cover" />
+              <div className="bg-gradient-to-br from-orange-200 to-red-200 rounded-2x1 overflow-hidden">
+                <img src="/cense.jpg" alt="cense" className="w-full h-auto" />
               </div>
               <p className="text-gray-700 text-sm leading-relaxed mb-3">
                 Created a sensor system used to monitor room capacity. 
@@ -312,8 +312,8 @@ export default function Portfolio() {
           <div className="space-y-12">
             {/* Digital Portrait */}
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-              <div className="h-72 bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 flex items-center justify-center text-8xl">
-                <img src="/jibbies.avif" alt="jibbies" className="w-full h-full object-cover" />
+              <div className="bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 rounded-2x1 overflow-hidden">
+                <img src="/jibbies.avif" alt="jibbies" className="w-full h-auto" />
               </div>
               <div className="p-6">
                 <p className="text-gray-700 text-lg">
