@@ -158,6 +158,11 @@ export default function Portfolio() {
                 Created a CAD model of the drone using Fusion 360 software with 3 other students, 
                 and led construction and electronics management.
               </p>
+              <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 border-l-4 border-yellow-400 p-4 rounded-r-lg mb-4">
+                <p className="text-gray-700 font-semibold">
+                  *Now, I am an instructor for this class and teach undergraduate students introductory CAD, 3D printing, and electronics through this project!
+                </p>
+              </div>
             </div>
 
             {/* Micromouse */}
