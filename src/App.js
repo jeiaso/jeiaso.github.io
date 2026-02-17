@@ -307,29 +307,30 @@ export default function Portfolio() {
             to me, it's my way of showing others exactly how loved they are from my perspective. 
             below are my favorite pieces so far!
           </p>
-
           <div className="space-y-12">
-            {/* Digital Portrait */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-              <div className="bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 rounded-2x1 overflow-hidden">
-                <img src="/jibbies.avif" alt="jibbies" className="w-full h-auto" />
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Digital Portrait */}
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div className="bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 rounded-2x1 overflow-hidden">
+                  <img src="/jibbies.avif" alt="jibbies" className="w-full h-auto" />
+                </div>
+                <div className="p-6">
+                  <p className="text-gray-700 text-lg">
+                    digital portrait of my siblings and i (fun fact: i'm the youngest of three!)
+                  </p>
+                </div>
               </div>
-              <div className="p-6">
-                <p className="text-gray-700 text-lg">
-                  digital portrait of my siblings and i (fun fact: i'm the youngest of three!)
-                </p>
-              </div>
-            </div>
 
-            {/* Traditional Drawing */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div className="bg-gradient-to-br from-yellow-200 via-orange-200 to-red-200 rounded-2xl overflow-hidden">
-              <img src="/youmei.avif" alt="youmei" className="w-full h-auto" />
-            </div>
-              <div className="p-6">
-                <p className="text-gray-700 text-lg">
-                  traditional drawing of my favorite picture of my best friend and i :)
-                </p>
+              {/* Traditional Drawing */}
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div className="bg-gradient-to-br from-yellow-200 via-orange-200 to-red-200 rounded-2xl overflow-hidden">
+                <img src="/youmei.avif" alt="youmei" className="w-full h-auto" />
+              </div>
+                <div className="p-6">
+                  <p className="text-gray-700 text-lg">
+                    traditional drawing of my favorite picture of my best friend and i :)
+                  </p>
+                </div>
               </div>
             </div>
           </div>
