@@ -288,10 +288,10 @@ export default function Portfolio() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { emoji: '🎨', color: 'from-pink-300 to-rose-300', title: 'Club Advocacy Graphics' },
-              { emoji: '👕', color: 'from-purple-300 to-indigo-300', title: 'Event Merchandise' },
-              { emoji: '📱', color: 'from-blue-300 to-cyan-300', title: 'Social Media Designs' },
-              { emoji: '✨', color: 'from-yellow-300 to-orange-300', title: 'Digital Illustrations' }
+              { image: '/kapwa26.png', title: 'Design Tool: Figma' },
+              { image: '/ewi.jpg', color: 'from-purple-300 to-indigo-300', title: 'Design Tool: Figma' },
+              { image: 'kapwa25.jpg', color: 'from-blue-300 to-cyan-300', title: 'Design Tool: Procreate' },
+              { image: '/dial.jpg', color: 'from-yellow-300 to-orange-300', title: 'Design Tool: Procreate' }
             ].map((item, idx) => (
               <div 
                 key={idx}
