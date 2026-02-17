@@ -100,6 +100,7 @@ export default function Portfolio() {
             </div>
           </div>
 
+          <div className="grid md:grid-cols-2 gap-8">
           {/* Research 2 */}
           <div className="mb-12 p-8 bg-white rounded-2xl shadow-lg">
             <h3 className="text-2xl font-bold text-purple-600 mb-3">
@@ -134,6 +135,7 @@ export default function Portfolio() {
             </p>
             <a href="https://drive.google.com/file/d/16CUVf1rmexZoogBpK_1fBijQj27L7zX0/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Poster</a>
           </div>
+        </div>
         </div>
       </section>
 
@@ -210,7 +212,7 @@ export default function Portfolio() {
               <a href="https://drive.google.com/file/d/1Ayj9Dwch33BfMiX2iTt1Xse702xu9hZ9/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Documentation</a>
             </div>
 
-            {/* Productivity Points */}
+            {/* Robotics */}
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow md:col-span-2">
               <h3 className="text-xl font-bold text-pink-600 mb-2">VEX Robotics Robot: 5327SWAGon</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">
