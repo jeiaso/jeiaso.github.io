@@ -230,9 +230,7 @@ export default function Portfolio() {
               </p>
               <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 border-l-4 border-yellow-400 p-4 rounded-r-lg mb-4">
                   <p className="text-gray-700 font-semibold">
-                    🏆 2x Excellence Award Winner!
-                    🏆 Design Award at State Championships!
-                    🏆 Qualified to 2022-23 VEX World Championships!
+                    🏆 2x Excellence Award Winner + Design Award Winner at State Championships + Qualified to 2022-23 VEX World Championships!
                   </p>
               </div>
               <div className="flex flex-wrap gap-3">
