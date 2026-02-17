@@ -187,6 +187,7 @@ export default function Portfolio() {
                 Designed and prototyped a printed circuit board (PCB) that helps the user make a decision or answer a question. 
                 Function mimics that of a magic 8 ball.
               </p>
+            <div className="flex flex-wrap gap-3">
               <a href="https://drive.google.com/file/d/1lXibV16pjCSTEqPKoAZqpG72rVY5jK6e/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Project Demo</a>
               <a href="https://docs.google.com/document/d/1b_niQjHHpxlo4deRGw7PoqTlz-bQVxWBJ4ucOS8r-PQ/edit?tab=t.0" className="text-sm text-blue-600 hover:text-blue-700 underline">View Documentation</a>
             </div>
