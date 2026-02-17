@@ -220,8 +220,8 @@ export default function Portfolio() {
                 April 2022 - April 2023: Gael Force Robotics at Dublin High School
               </p>
               <div className="grid md:grid-cols-2 gap-8">
-                <img src="/robot.heic" alt="cense" className="w-full h-auto" />
-                <img src="/states.heic" alt="cense" className="w-full h-auto" />
+                <img src="/robot.heic" alt="robot" className="w-full h-auto" />
+                <img src="/states.heic" alt="states" className="w-full h-auto" />
               </div>
               <p className="text-gray-700 text-sm leading-relaxed mb-3">
                 Led team of 15 engineering students across different grades and experience levels. Designed, prototyped, and built subsystems
