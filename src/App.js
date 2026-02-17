@@ -150,7 +150,7 @@ export default function Portfolio() {
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold text-pink-600 mb-2">Drone</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">March 2025: Engineering 1 Project</p>
-              <div className="bg-gradient-to-br from-blue-200 to-cyan-200 rounded-2x1 overflow-hidden">
+              <div className="bg-gradient-to-br from-blue-200 to-cyan-200 rounded-2xl overflow-hidden mb-4">
                 <img src="/drone.avif" alt="drone" className="w-full h-auto" />
               </div>
               <p className="text-gray-700 text-sm leading-relaxed">
@@ -164,7 +164,7 @@ export default function Portfolio() {
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold text-pink-600 mb-2">Micromouse</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">September 2024: IEEE Project</p>
-              <div className="bg-gradient-to-br from-purple-200 to-pink-200 rounded-2x1 overflow-hidden">
+              <div className="bg-gradient-to-br from-purple-200 to-pink-200 rounded-2xl overflow-hidden mb-4">
                 <img src="/mm.png" alt="mm" className="w-full h-auto" />
               </div>
               <p className="text-gray-700 text-sm leading-relaxed">
@@ -178,7 +178,7 @@ export default function Portfolio() {
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold text-pink-600 mb-2">PCB Design: Decision Maker</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">March 2024: Honors Digital Electronics Project</p>
-              <div className="bg-gradient-to-br from-green-200 to-teal-200 rounded-2x1 overflow-hidden">
+              <div className="bg-gradient-to-br from-green-200 to-teal-200 rounded-2xl overflow-hidden mb-4">
                 <img src="/8ball.png" alt="8ball" className="w-full h-auto" />
               </div>
               <p className="text-gray-700 text-sm leading-relaxed mb-3">
@@ -195,7 +195,7 @@ export default function Portfolio() {
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold text-pink-600 mb-2">CENSE: Crowd Sense</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">April 2023: Dublin Engineering Project</p>
-              <div className="bg-gradient-to-br from-orange-200 to-red-200 rounded-2x1 overflow-hidden">
+              <div className="bg-gradient-to-br from-orange-200 to-red-200 rounded-2xl overflow-hidden mb-4">
                 <img src="/cense.jpg" alt="cense" className="w-full h-auto" />
               </div>
               <p className="text-gray-700 text-sm leading-relaxed mb-3">
@@ -217,9 +217,9 @@ export default function Portfolio() {
               <p className="text-sm text-gray-600 mb-3 font-semibold">
                 April 2022 - April 2023: Gael Force Robotics at Dublin High School
               </p>
-              <div className="grid md:grid-cols-2 gap-8">
-                <img src="/robot.png" alt="robot" className="w-full h-70 object-cover" />
-                <img src="/states.png" alt="states" className="w-full h-70 object-cover" />
+              <div className="grid md:grid-cols-2 gap-8 mb-4">
+                <img src="/robot.png" alt="robot" className="w-full h-72 object-cover rounded-2xl" />
+                <img src="/states.png" alt="states" className="w-full h-72 object-cover rounded-2xl" />
               </div>
               <p className="text-gray-700 text-sm leading-relaxed mb-3">
                 Led team of 15 engineering students across different grades and experience levels. Designed, prototyped, and built subsystems
@@ -328,7 +328,7 @@ export default function Portfolio() {
             below are my favorite pieces so far!
           </p>
           <div className="space-y-12">
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-8 mb-4">
               {/* Digital Portrait */}
               <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <div className="bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 rounded-2x1 overflow-hidden">
