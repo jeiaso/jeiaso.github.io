@@ -395,7 +395,7 @@ export default function Portfolio() {
       <footer className="bg-gradient-to-r from-pink-100 to-purple-100 py-8 mt-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-gray-600">
-            ☆.｡.:* last updated 2/16/2026 ｡･:*:･ﾟ★,｡･:*:･ﾟ☆
+            ☆.｡.:* last updated 5/31/2026 ｡･:*:･ﾟ★,｡･:*:･ﾟ☆
           </p>
         </div>
       </footer>
