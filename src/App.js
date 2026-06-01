@@ -150,7 +150,7 @@ export default function Portfolio() {
             {/* PetaLux */}
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold text-pink-600 mb-2">PetaLux</h3>
-              <p className="text-sm text-gray-600 mb-3 font-semibold">January 2026: Creative Labs @ UCLA Project</p>
+              <p className="text-sm text-gray-600 mb-3 font-semibold">May 2026: Creative Labs @ UCLA Project</p>
               <p className="text-gray-700 text-sm leading-relaxed mb-4">
                 Leading team of 8 students across engineering disciplines and experience levels to build a mechanical flower lamp that turns on at
                 user indicated times. Developed screw and helical gear system to create blooming motion of petals, and guided material selection 
