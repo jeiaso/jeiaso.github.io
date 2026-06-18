@@ -164,10 +164,13 @@ export default function Portfolio() {
               </div>  
             </div>
 
-            {/* ThermoSense
+            {/* ThermoSense */}
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold text-pink-600 mb-2">ThermoSense</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">January 2026: Creative Labs @ UCLA Project</p>
+              <div className="bg-gradient-to-br from-blue-200 to-cyan-200 rounded-2xl overflow-hidden mb-4">
+                <img src="/thermosense.png" alt="thermosense" className="w-full h-auto" />
+              </div>
               <p className="text-gray-700 text-sm leading-relaxed mb-4">
                 Collaborated with seven other students to build a desk fan that monitors surroundings to maintain a user set temperature.
                 Created CAD model of desk fan including electronics housing. 
@@ -176,7 +179,7 @@ export default function Portfolio() {
               <div className="flex flex-wrap gap-3">
                 <a href="https://docs.google.com/presentation/d/1GGw0YDN4rU4RGcjI4jODf_Td0wIyoUAw/edit?usp=sharing&ouid=109467473150855159667&rtpof=true&sd=true" className="text-sm text-blue-600 hover:text-blue-700 underline">View Final Presentation</a>
               </div>  
-            </div> */}
+            </div>
 
             {/* Drone Project */}
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
