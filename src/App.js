@@ -37,8 +37,7 @@ export default function Portfolio() {
         <span className="font-semibold text-purple-600"> robotics/bionics</span>!
       </p>
       <p className="text-gray-700 mb-4">
-        <span className="font-semibold">currently:</span> researching @ the mechanics of soft materials lab + 
-        leading the petalux mechanical flower project under creative labs @ ucla!
+        <span className="font-semibold">currently:</span> researching @ the mechanics of soft materials lab and mohala lab + building my own desk raspberry pi photobooth!
       </p>
       <div className="flex gap-4 items-center text-gray-700">
         <Mail size={20} className="text-pink-500" />
@@ -151,17 +150,21 @@ export default function Portfolio() {
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold text-pink-600 mb-2">PetaLux</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">May 2026: Creative Labs @ UCLA Project</p>
+              <div className="grid md:grid-cols-2 gap-8 mb-4">
+                <img src="/flower.gif" alt="flower" className="w-full h-72 object-cover rounded-2xl" />
+                <img src="/app.gif" alt="app" className="w-full h-72 object-cover rounded-2xl" />
+              </div>
               <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                Leading team of 8 students across engineering disciplines and experience levels to build a mechanical flower lamp that turns on at
+                Led team of 8 students across engineering disciplines and experience levels to build a mechanical flower lamp that turns on at
                 user indicated times. Developed screw and helical gear system to create blooming motion of petals, and guided material selection 
                 to optimize the aesthetics and make the physical and app interface intuitive for users.
               </p>
               <div className="flex flex-wrap gap-3">
-                <a href="https://docs.google.com/presentation/d/1WCs_ZEHIrXRMGxeCx3AHshIwRzpFZOB2ZqbcWvIt4hA/edit?usp=drive_link" className="text-sm text-blue-600 hover:text-blue-700 underline">View Midpoint Presentation</a>
+                <a href="https://docs.google.com/presentation/d/1veKpVZcJVTOzE55h0ptMOnYDZeinHBmWzTgwCi1aTko/edit?usp=sharing" className="text-sm text-blue-600 hover:text-blue-700 underline">View Demo Day Presentation</a>
               </div>  
             </div>
 
-            {/* ThermoSense */}
+            {/* ThermoSense
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold text-pink-600 mb-2">ThermoSense</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">January 2026: Creative Labs @ UCLA Project</p>
@@ -173,7 +176,7 @@ export default function Portfolio() {
               <div className="flex flex-wrap gap-3">
                 <a href="https://docs.google.com/presentation/d/1GGw0YDN4rU4RGcjI4jODf_Td0wIyoUAw/edit?usp=sharing&ouid=109467473150855159667&rtpof=true&sd=true" className="text-sm text-blue-600 hover:text-blue-700 underline">View Final Presentation</a>
               </div>  
-            </div>
+            </div> */}
 
             {/* Drone Project */}
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
