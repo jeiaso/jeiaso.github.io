@@ -150,9 +150,8 @@ export default function Portfolio() {
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold text-pink-600 mb-2">PetaLux</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">May 2026: Creative Labs @ UCLA Project</p>
-              <div className="grid md:grid-cols-2 gap-8 mb-4">
-                <img src="/flower.gif" alt="flower" className="w-full h-72 object-cover rounded-2xl" />
-                <img src="/app.gif" alt="app" className="w-full h-72 object-cover rounded-2xl" />
+              <div className="bg-gradient-to-br from-blue-200 to-cyan-200 rounded-2xl overflow-hidden mb-4">
+                <img src="/flower.gif" alt="flower" className="w-full h-auto" />
               </div>
               <p className="text-gray-700 text-sm leading-relaxed mb-4">
                 Led team of 8 students across engineering disciplines and experience levels to build a mechanical flower lamp that turns on at
