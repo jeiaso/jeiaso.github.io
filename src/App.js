@@ -37,7 +37,7 @@ export default function Portfolio() {
         <span className="font-semibold text-purple-600"> robotics/bionics</span>!
       </p>
       <p className="text-gray-700 mb-4">
-        <span className="font-semibold">currently:</span> researching @ the mechanics of soft materials lab and mohala lab + building my own desk raspberry pi photobooth!
+        <span className="font-semibold">currently:</span> researching @ the mechanics of soft materials lab and volunteering for the art team @ mohala lab!
       </p>
       <div className="flex gap-4 items-center text-gray-700">
         <Mail size={20} className="text-pink-500" />
@@ -419,7 +419,7 @@ export default function Portfolio() {
       <footer className="bg-gradient-to-r from-pink-100 to-purple-100 py-8 mt-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-gray-600">
-            ☆.｡.:* last updated 5/31/2026 ｡･:*:･ﾟ★,｡･:*:･ﾟ☆
+            ☆.｡.:* last updated 7/22/2026 ｡･:*:･ﾟ★,｡･:*:･ﾟ☆
           </p>
         </div>
       </footer>
