@@ -146,6 +146,25 @@ export default function Portfolio() {
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
 
+            {/* Desk Photobooth */}
+            <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+              <h3 className="text-xl font-bold text-pink-600 mb-2">Desk Photobooth</h3>
+              <p className="text-sm text-gray-600 mb-3 font-semibold">July 2026: Personal Project</p>
+              <div className="bg-gradient-to-br from-blue-200 to-cyan-200 rounded-2xl overflow-hidden mb-4">
+                <img src="/demo.gif" alt="demo" className="w-full h-auto" />
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                Developed a complete Raspberry Pi based photobooth system integrating a camera module and thermal printer, with custom wiring using WAGO connectors and soldered electrical connections. Designed and manufactured a custom photobooth enclosure in SolidWorks using additive manufacturing (3D printing), and created the user interface and visual assets for the interactive experience.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a href="https://docs.google.com/document/d/12_0OCm_fwv0Zps05empZ7g9PkuUX66wCv1pk4OmJLpI/edit?usp=sharing" className="text-sm text-blue-600 hover:text-blue-700 underline">View Project Documentation</a>
+              </div>  
+              <div className="flex flex-wrap gap-3">
+                <a href="https://github.com/jeiaso/raspberry-photobooth" className="text-sm text-blue-600 hover:text-blue-700 underline">Access GitHub</a>
+              </div>
+            </div>
+
+          
             {/* PetaLux */}
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold text-pink-600 mb-2">PetaLux</h3>
@@ -163,7 +182,7 @@ export default function Portfolio() {
               </div>  
             </div>
 
-            {/* ThermoSense */}
+            {/* ThermoSense
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold text-pink-600 mb-2">ThermoSense</h3>
               <p className="text-sm text-gray-600 mb-3 font-semibold">January 2026: Creative Labs @ UCLA Project</p>
@@ -178,7 +197,7 @@ export default function Portfolio() {
               <div className="flex flex-wrap gap-3">
                 <a href="https://docs.google.com/presentation/d/1GGw0YDN4rU4RGcjI4jODf_Td0wIyoUAw/edit?usp=sharing&ouid=109467473150855159667&rtpof=true&sd=true" className="text-sm text-blue-600 hover:text-blue-700 underline">View Final Presentation</a>
               </div>  
-            </div>
+            </div> */}
 
             {/* Drone Project */}
             <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
