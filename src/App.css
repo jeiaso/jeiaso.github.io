@@ -50,3 +50,48 @@ html{scroll-padding-top:80px}body{background:#e9e1d2;color:var(--ink);font-size:
 @media(max-width:900px){.content-width{padding-inline:30px}.site-header{padding-inline:30px}.hero-intro{min-height:515px}.hero h1{font-size:clamp(49px,6.5vw,76px)}.hero-sticky{right:0;bottom:35px;width:150px;padding:15px}.hero-sticky p{font-size:22px}.projects-grid{gap:50px 26px}.project-cover{height:220px}.about-grid{gap:40px}}
 @media(max-width:650px){.content-width{padding-inline:22px}.site-header{padding:15px 22px}.site-nav{background:var(--paper)}.notebook-topline{font-size:8px;letter-spacing:.04em}.notebook-topline span:last-child{display:none}.hero-intro{min-height:520px;align-items:flex-start;padding:105px 0 130px}.hello-note{font-size:25px}.hero h1{font-size:clamp(42px,9.4vw,61px);max-width:100%}.hero-description{font-size:13px!important;max-width:290px!important}.hero-sticky{right:6px;bottom:15px;width:127px;padding:12px;transform:rotate(6deg)}.hero-sticky p{font-size:20px}.hero-bottom{font-size:14px}.work-section{padding-top:65px;padding-bottom:70px}.section-heading{align-items:flex-start;gap:10px}.section-heading h2{font-size:43px}.section-heading>p{text-align:left;transform:rotate(-2deg);font-size:19px}.projects-grid{grid-template-columns:1fr;gap:38px;margin-top:38px!important}.project-card:nth-child(even){margin-top:0}.project-cover{height:260px}.archive-section{padding-bottom:75px}.art-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.art-sheet:nth-child(even){margin-top:10px}.art-caption strong{font-size:19px}.sketchbook-section{padding:70px 0}.about-section{padding:70px 22px 95px}.about-grid{grid-template-columns:1fr;gap:38px}.about-grid>div:first-child{max-width:290px}.detail-panel{padding:45px 24px 70px}.site-footer{padding-top:60px}.sketchwall-grid{gap:10px}}
 @media(prefers-reduced-motion:reduce){.project-card,.art-sheet{transition:none!important}}
+
+/* About me first: paired portrait notebook spread */
+.about-first-layout{display:grid;grid-template-columns:minmax(0,1.07fr) minmax(0,.93fr);gap:55px;align-items:center;min-height:630px;padding:66px 0 82px;isolation:isolate}
+.about-first-copy{position:relative;z-index:3;max-width:590px}
+.about-first-copy h1{font-size:clamp(52px,5.4vw,76px);line-height:1.1;margin:6px 0 12px}
+.about-first-copy h1 em{font-style:normal;color:var(--pink);font-family:var(--hand);font-size:.7em}
+.about-first-copy .hero-description{font:400 clamp(25px,2.6vw,36px)/1.25 var(--serif);color:#a15d7d!important;max-width:460px!important;margin:0 0 21px}
+.hero-about-text{max-width:535px}
+.hero-about-text p{font-size:14px;line-height:1.85;color:#5b5650;margin:0 0 13px}
+.hero-contact-links{gap:15px 20px;margin:17px 0 0}
+.hero-contact-links a{font-size:12px;white-space:nowrap}
+.about-first-copy .hero-actions{margin-top:27px}
+.portrait-pair{position:relative;min-height:475px;z-index:2}
+.portrait-print{position:absolute;box-sizing:border-box;margin:0;width:59%;padding:11px 11px 15px;background:#fffdf7;box-shadow:5px 7px 0 #e9d9c8,0 14px 32px #5f4c371c;border:1px solid #e9ddce;transition:transform .25s ease}
+.portrait-print:before{content:'';position:absolute;top:-12px;left:37%;width:62px;height:23px;background:#e8c2c7ad;transform:rotate(-3deg)}
+.portrait-print:hover{transform:rotate(0deg) translateY(-6px)}
+.portrait-photo{left:0;top:24px;transform:rotate(-6deg);z-index:1}
+.portrait-drawing{right:0;top:112px;transform:rotate(7deg);z-index:2}
+.portrait-drawing:before{background:#d7c9a6b8;left:45%}
+.portrait-image{width:100%;aspect-ratio:4/5;background:#f5eee5;overflow:hidden}
+.portrait-image img{width:100%;height:100%;object-fit:cover;display:block}
+.portrait-drawing .portrait-image img{object-fit:contain}
+.portrait-print figcaption{display:flex;align-items:center;justify-content:space-between;font:500 22px/1.1 var(--hand);color:#765960;padding:12px 3px 0}
+.portrait-annotation{position:absolute;bottom:0;right:7%;font:24px/1 var(--hand);color:#af7089;transform:rotate(-5deg)}
+/* Floating background sketches remain interactive but don't obscure portraits or copy. */
+.about-first-layout .floating-sketch-layer{opacity:.17;z-index:0}
+@media(max-width:1050px){.about-first-layout{gap:25px}.portrait-pair{min-height:405px}.hero-about-text p{font-size:13px}}
+@media(max-width:760px){.about-first-layout{grid-template-columns:1fr;gap:16px;min-height:0;padding:58px 0 46px}.about-first-copy{max-width:100%}.about-first-copy h1{font-size:clamp(48px,9vw,72px)}.portrait-pair{width:min(550px,100%);min-height:390px;margin:20px auto 0}.portrait-print{width:53%}.portrait-photo{top:10px;left:4%}.portrait-drawing{top:60px;right:3%}.portrait-annotation{bottom:0;right:5%}.hero-contact-links{flex-wrap:wrap}.about-first-layout .floating-sketch-layer{opacity:.1}}
+@media(max-width:430px){.portrait-pair{min-height:310px}.portrait-print{padding:7px 7px 10px}.portrait-print figcaption{font-size:18px}.portrait-annotation{font-size:19px}.about-first-copy .hero-description{font-size:27px}.hero-contact-links a{font-size:12px}}
+
+
+/* Headshot first, self-portrait as an unframed margin doodle */
+.portrait-collage{position:relative;min-height:495px;isolation:isolate;z-index:2;overflow:visible}
+.portrait-main-photo{position:absolute;top:20px;left:8%;width:min(72%,335px);margin:0;padding:11px 11px 13px;background:#fffdf7;border:1px solid #e9ddce;box-shadow:5px 7px 0 #e9d9c8,0 12px 26px #5f4c3717;transform:rotate(-3deg);z-index:1}
+.portrait-main-photo img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#efe4d8}
+.portrait-main-photo figcaption{font:500 23px/1.1 var(--hand);margin:12px 3px 1px;color:#765960}
+.portrait-sketch-doodle{position:absolute;right:-1%;bottom:31px;width:51%;max-width:245px;z-index:3;transform:rotate(7deg);transition:transform .35s ease;pointer-events:auto}
+.portrait-sketch-doodle img{display:block;width:100%;height:auto;filter:drop-shadow(1px 2px 1px #87746716);mix-blend-mode:multiply}
+.portrait-sketch-doodle:hover{transform:rotate(3deg) translate(0,-9px)}
+.portrait-sketch-label{position:absolute;right:0;bottom:5px;z-index:4;font:500 23px/1.05 var(--hand);color:#ad6c86;transform:rotate(-7deg);white-space:nowrap}
+.portrait-sketch-arrow{display:inline-block;font:34px/1 var(--hand);margin-right:7px;transform:rotate(-25deg)}
+@media(max-width:1050px){.portrait-collage{min-height:430px}.portrait-main-photo{left:2%;width:74%}.portrait-sketch-doodle{width:53%;bottom:38px}}
+@media(max-width:760px){.portrait-collage{width:min(480px,100%);height:445px;min-height:0;margin:2px auto 0}.portrait-main-photo{left:5%;width:66%;top:8px}.portrait-sketch-doodle{width:48%;right:2%;bottom:36px}.portrait-sketch-label{right:2%;bottom:3px}}
+@media(max-width:430px){.portrait-collage{height:355px}.portrait-main-photo{width:67%;padding:7px 7px 10px}.portrait-main-photo figcaption{font-size:18px;margin-top:7px}.portrait-sketch-doodle{width:49%;bottom:35px}.portrait-sketch-label{font-size:19px}.portrait-sketch-arrow{font-size:25px}}
+@media(prefers-reduced-motion:reduce){.portrait-sketch-doodle{transition:none}}

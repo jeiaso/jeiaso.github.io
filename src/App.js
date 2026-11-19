@@ -77,27 +77,42 @@ export default function App() {
       <a href="#top" className="wordmark">jeia so<span>♡</span></a>
       <button className="mobile-menu" aria-label="Toggle navigation" onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button>
       <nav className={menu?'site-nav nav-open':'site-nav'}>
+        <a href="#about" onClick={()=>setMenu(false)}>about</a>
         <a href="#research" onClick={()=>setMenu(false)}>research</a>
         <a href="#projects" onClick={()=>setMenu(false)}>projects</a>
         <a href="#design" onClick={()=>setMenu(false)}>design</a>
         <a href="#art" onClick={()=>setMenu(false)}>art</a>
         <a href="#wall" onClick={()=>setMenu(false)}>guestbook</a>
-        <a href="#about" onClick={()=>setMenu(false)}>about</a>
         <a className="nav-contact" href="mailto:jeia@ucla.edu">get in touch <ArrowUpRight size={15}/></a>
       </nav>
     </header>
     <main id="top">
-      <section className="hero content-width" aria-label="Welcome to my scrapbook">
+      <section className="hero content-width" id="about" aria-label="About Jeia">
         <div className="notebook-topline"><span>JEIA'S LITTLE CORNER OF THE INTERNET</span><span>VOL. 01 · A WORK IN PROGRESS</span></div>
-        <div className="hero-intro">
+        <div className="hero-intro about-first-layout">
           <FloatingSketches/>
-          <div className="hero-copy">
+          <div className="hero-copy about-first-copy">
             <div className="hello-note">hello, welcome in! <span>♡</span></div>
-            <h1>things i've made,<br/><em>and things i'm making.</em></h1>
-            <p className="hero-description">A scrapbook of little ideas, big projects, half-finished sketches, and everything in between.</p>
+            <h1>hi, i'm jeia. <em>♡</em></h1>
+            <p className="hero-description">things i've made, and things i'm making.</p>
+            <div className="hero-about-text"><p>{about_intro}</p><p>{about_current}</p></div>
+            <div className="about-links hero-contact-links">
+              <a href="mailto:jeia@ucla.edu"><Mail size={17}/> jeia@ucla.edu</a>
+              <a href="https://linkedin.com/in/jeiaso" target="_blank" rel="noopener noreferrer"><Linkedin size={17}/> LinkedIn</a>
+              <a href="https://github.com/jeiaso" target="_blank" rel="noopener noreferrer"><Github size={17}/> GitHub</a>
+            </div>
             <div className="hero-actions"><a className="primary-link" href="#research">flip through my work <ArrowDown size={17}/></a><a className="quiet-link" href="#wall">leave a doodle <ArrowUpRight size={16}/></a></div>
           </div>
-          <aside className="hero-sticky" aria-label="A note from Jeia"><span>TO DO:</span><p>make something<br/>just because ♡</p><small>— jeia</small></aside>
+          <div className="portrait-collage" aria-label="Photograph with a self-portrait sketch annotation">
+            <figure className="portrait-main-photo">
+              <img src="/JeiaSo_Headshot.jpg" alt="Jeia's headshot" />
+              <figcaption>me, in real life ♡</figcaption>
+            </figure>
+            <div className="portrait-sketch-doodle">
+              <img src="/sketches/self-portrait-placeholder.svg" alt="Placeholder for Jeia's self-portrait sketch" />
+            </div>
+            <div className="portrait-sketch-label" aria-hidden="true"><span className="portrait-sketch-arrow">↗</span> me, according to me :)</div>
+          </div>
         </div>
         <div className="hero-bottom"><span>engineer / designer / collector of ideas</span><span>↓ keep scrolling</span></div>
       </section>
@@ -129,12 +144,6 @@ export default function App() {
         <p className="section-original-intro">{art_intro}</p><Gallery images={art_images} onOpen={setArt}/>
       </div></section>
 
-      <section className="about-section content-width" id="about"><div className="section-heading"><div><span className="eyebrow">LAST PAGE · A LITTLE ABOUT ME</span><h2>hi, i'm jeia <span>♡</span></h2></div></div>
-        <div className="about-grid"><div><img className="about-headshot" src="/JeiaSo_Headshot.jpg" alt="Jeia So"/></div><div className="about-copy">
-          <p>{about_intro}</p><p>{about_current}</p>
-          <div className="about-links"><a href="mailto:jeia@ucla.edu"><Mail size={18}/> jeia@ucla.edu</a><a href="https://linkedin.com/in/jeiaso" target="_blank" rel="noopener noreferrer"><Linkedin size={18}/> LinkedIn</a><a href="https://github.com/jeiaso" target="_blank" rel="noopener noreferrer"><Github size={18}/> GitHub</a></div>
-        </div></div>
-      </section>
     </main>
     <footer className="site-footer"><div className="content-width"><span className="footer-kicker">THAT'S ALL FOR NOW · THANKS FOR READING ♡</span><h2>let's make something <em>together.</em></h2><a href="mailto:jeia@ucla.edu" className="footer-email">jeia@ucla.edu <ArrowUpRight/></a><div className="footer-bottom"><span>© {new Date().getFullYear()} JEIA SO</span><span>MADE WITH LOVE & TOO MANY TABS OPEN</span><a href="#top">BACK TO TOP ↑</a></div></div></footer>
     <ProjectDetail project={selected} onClose={()=>setSelected(null)}/>

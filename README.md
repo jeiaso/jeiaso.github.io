@@ -1,20 +1,17 @@
-# Jeia’s scrapbook portfolio
+# Jeia — scrapbook portfolio (sketch-over-photo edition)
 
-A cozy, annotated notebook layout that preserves **all original descriptions, dates, awards, project images and external links** from the original App.js in `src/originalContent.js`. Research and Projects remain separate.
+The homepage now shows ONE main framed photograph with an unframed self-portrait doodle overlapping its corner. The separate framed self-portrait/photo split has been removed. The About Me introduction stays at the top.
 
 ## Install
-1. Back up your current project.
-2. Copy the package `src/` contents into your existing `my-portfolio/src/`, replacing files with matching names.
-3. Copy `public/sketches/` to your existing `my-portfolio/public/sketches/`. Do NOT delete the original files in public (such as shell.gif, flower.gif, demo.gif, headshot, and art).
-4. Run `npm.cmd start` in PowerShell to preview. When ready: `git add .`, `git commit -m "Make portfolio a cozy scrapbook"`, `git push origin main`, `npm.cmd run deploy`.
 
-## Guestbook / shared wall
-This requires a Supabase project and the environment variables shown in `.env.example`. Run `supabase-setup.sql` in Supabase's SQL editor. The public site cannot save shared drawings without a backend. Publishing remains disabled until connected. Add moderation/rate limiting before making public submissions widely available.
+1. Back up your working portfolio.
+2. Copy `src/App.js` and `src/App.css` into your project's `src/` folder.
+3. Copy `public/sketches/self-portrait-placeholder.svg` into `public/sketches/`, overwriting the old placeholder.
+4. Keep your original `public/JeiaSo_Headshot.jpg` and other images, and keep the remaining project files.
+5. Preview using `npm.cmd start` from PowerShell.
 
-## Edit the design
-- The notebook styling lives at the **bottom** of `src/App.css` under the `Cozy annotated notebook redesign` comment.
-- Change original projects, descriptions, or links only in `src/originalContent.js`.
-- The floating placeholder drawings are in `public/sketches`.
-- Uses DM Sans for body text, Fraunces for headings, Caveat for small annotations. No custom font installation required; Google Fonts fallback fonts work if offline.
+## Replace the self-portrait
 
-The redesigned website hasn't been built in your exact existing repository; test locally before deploying.
+Export a line drawing with a transparent background as `public/sketches/self-portrait.png`, and replace the image source `/sketches/self-portrait-placeholder.svg` in `src/App.js` with `/sketches/self-portrait.png`. Transparent backgrounds give the floating doodle effect.
+
+Other sections, your original descriptions and links, and the shared sketch wall remain unchanged. The sketch wall needs Supabase configured for persistent public pins. This package is not live-deployed or production-build tested.
