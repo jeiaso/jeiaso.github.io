@@ -1,428 +1,160 @@
-import React, { useState } from 'react';
-import { Heart, Sparkles, Star, Mail, Linkedin } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ArrowUpRight, ArrowDown, Github, Linkedin, Mail, Pencil, RotateCcw, Trash2, Menu, X, MoveUpRight } from 'lucide-react';
+import './App.css';
+import FloatingSketches from './FloatingSketches';
 
-export default function Portfolio() {
-  const [hoveredImage, setHoveredImage] = useState(null);
+const projects = [
+  { number: '01', title: 'PetaLux', type: 'PRODUCT DESIGN / MECHANISMS', year: '2026', image: '/flower.gif', note: 'a flower that blooms with light', summary: 'Led an interdisciplinary team in creating a mechanical blooming lamp, from concept and gear-driven motion to the final prototype.', link: 'https://docs.google.com/presentation/d/1veKpVZcJVTOzE55h0ptMOnYDZeinHBmWzTgwCi1aTko/edit?usp=sharing' },
+  { number: '02', title: 'Woven shells', type: 'RESEARCH / ADDITIVE MANUFACTURING', year: '2024–26', image: '/shell.gif', note: 'soft structures, new possibilities', summary: 'Exploring the mechanics of 3D-printed woven structures through CAD, FEA, fabrication, and physical testing.', link: 'https://drive.google.com/file/d/1s_JpJRAaWY_l13-_h5D5Hjck3oEBxcoo/view' },
+  { number: '03', title: 'ThermoSense', type: 'PRODUCT DESIGN / ELECTRONICS', year: '2026', image: '/thermosense.png', note: 'a smarter desk companion', summary: 'Designed the CAD and electronics housing for a temperature-responsive desktop fan.', link: 'https://docs.google.com/presentation/d/1GGw0YDN4rU4RGcjI4jODf_Td0wIyoUAw/edit?usp=sharing' },
+  { number: '04', title: 'FPV drone', type: 'MECHANICAL DESIGN / PROTOTYPING', year: '2025', image: '/drone.avif', note: 'made to move', summary: 'Modeled, built, and tested a custom drone optimized for maneuverability and speed.', link: null },
+];
+
+const artwork = [
+  { src: '/youmei.avif', title: 'a moment worth keeping', detail: 'traditional drawing' },
+  { src: '/jibbies.avif', title: 'the people i love', detail: 'digital portrait' },
+  { src: '/kapwa26.png', title: 'kapwa', detail: 'graphic design' },
+  { src: '/dial.jpg', title: 'visual explorations', detail: 'graphic design' },
+];
+
+function SketchCanvas() {
+  const canvasRef = useRef(null);
+  const strokesRef = useRef([]);
+  const currentRef = useRef(null);
+  const [ink, setInk] = useState('#242424');
+  const inkRef = useRef(ink);
+  const [strokeCount, setStrokeCount] = useState(0);
+  const [enabled, setEnabled] = useState(true);
+  const enabledRef = useRef(true);
+  const inkColors = [{ name: 'graphite', value: '#242424' }, { name: 'soft gray', value: '#99938f' }, { name: 'pink', value: '#dc7da2' }];
+
+  useEffect(() => { inkRef.current = ink; }, [ink]);
+  useEffect(() => { enabledRef.current = enabled; }, [enabled]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const context = canvas.getContext('2d');
+    const render = () => {
+      const bounds = canvas.getBoundingClientRect();
+      context.clearRect(0, 0, bounds.width, bounds.height);
+      for (const stroke of strokesRef.current) {
+        context.strokeStyle = stroke.color;
+        context.fillStyle = stroke.color;
+        context.lineWidth = 2.1;
+        context.lineCap = 'round';
+        context.lineJoin = 'round';
+        const pts = stroke.points;
+        if (pts.length === 1) {
+          context.beginPath();
+          context.arc(pts[0].x * bounds.width, pts[0].y * bounds.height, 1.3, 0, Math.PI * 2);
+          context.fill();
+        } else {
+          context.beginPath();
+          pts.forEach((p, i) => i === 0 ? context.moveTo(p.x * bounds.width, p.y * bounds.height) : context.lineTo(p.x * bounds.width, p.y * bounds.height));
+          context.stroke();
+        }
+      }
+    };
+    const resize = () => {
+      const bounds = canvas.getBoundingClientRect();
+      const ratio = window.devicePixelRatio || 1;
+      canvas.width = Math.round(bounds.width * ratio);
+      canvas.height = Math.round(bounds.height * ratio);
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+      render();
+    };
+    const position = (event) => {
+      const r = canvas.getBoundingClientRect();
+      return { x: (event.clientX - r.left) / r.width, y: (event.clientY - r.top) / r.height };
+    };
+    const down = (event) => {
+      if (!enabledRef.current || (event.pointerType === 'mouse' && event.button !== 0)) return;
+      currentRef.current = { color: inkRef.current, points: [position(event)] };
+      strokesRef.current.push(currentRef.current);
+      canvas.setPointerCapture(event.pointerId);
+      render();
+      setStrokeCount(strokesRef.current.length);
+    };
+    const move = (event) => {
+      if (!currentRef.current) return;
+      currentRef.current.points.push(position(event));
+      render();
+    };
+    const up = () => { currentRef.current = null; };
+    const observer = new ResizeObserver(resize);
+    observer.observe(canvas);
+    canvas.addEventListener('pointerdown', down);
+    canvas.addEventListener('pointermove', move);
+    canvas.addEventListener('pointerup', up);
+    canvas.addEventListener('pointercancel', up);
+    resize();
+    canvas._renderDrawing = render;
+    return () => {
+      observer.disconnect();
+      canvas.removeEventListener('pointerdown', down);
+      canvas.removeEventListener('pointermove', move);
+      canvas.removeEventListener('pointerup', up);
+      canvas.removeEventListener('pointercancel', up);
+      delete canvas._renderDrawing;
+    };
+  }, []);
+
+  const undo = () => {
+    strokesRef.current.pop();
+    setStrokeCount(strokesRef.current.length);
+    canvasRef.current?._renderDrawing?.();
+  };
+  const clear = () => {
+    strokesRef.current = [];
+    setStrokeCount(0);
+    canvasRef.current?._renderDrawing?.();
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
-              Jeia So
-            </h1>
-            <nav className="flex gap-6">
-              <a href="#about" className="text-gray-700 hover:text-pink-500 transition-colors">About</a>
-              <a href="#research" className="text-gray-700 hover:text-pink-500 transition-colors">Research</a>
-              <a href="#projects" className="text-gray-700 hover:text-pink-500 transition-colors">Projects</a>
-              <a href="#design" className="text-gray-700 hover:text-pink-500 transition-colors">Design</a>
-              <a href="#art" className="text-gray-700 hover:text-pink-500 transition-colors">Art</a>
-            </nav>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-<section id="about" className="max-w-6xl mx-auto px-6 py-16">
-  <div className="flex flex-col md:flex-row items-center gap-12">
-    <div className="flex-1 min-w-0">
-      <h2 className="text-5xl font-bold mb-6 flex items-center gap-3">
-        hi, i'm jeia ♡
-      </h2>
-      <p className="text-lg text-gray-700 leading-relaxed mb-6">
-        expressing love through creation, and combining my passions for tech, art, and service through my work ˚₊· ͟͟͞͞➳❥ specifically interested in <span className="font-semibold text-purple-600">product design</span>, 
-        <span className="font-semibold text-purple-600"> entertainment engineering</span>, and 
-        <span className="font-semibold text-purple-600"> robotics/bionics</span>!
-      </p>
-      <p className="text-gray-700 mb-4">
-        <span className="font-semibold">currently:</span> researching @ the mechanics of soft materials lab and volunteering for the art team @ mohala lab!
-      </p>
-      <div className="flex gap-4 items-center text-gray-700">
-        <Mail size={20} className="text-pink-500" />
-        <span>jeia @ ucla . edu</span>
-        <a href="https://linkedin.com/in/jeiaso" target="_blank" rel="noopener noreferrer" 
-           className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors">
-          <Linkedin size={20} />
-          linkedin.com/in/jeiaso
-        </a>
+    <div className="drawing-wrap" id="draw" aria-label="Interactive sketchbook drawing canvas">
+      <div className="drawing-head"><span>FIG. 001 — AN OPEN CANVAS</span><span className="drawing-head-right">YOUR TURN TO CREATE ↘</span></div>
+      <div className="drawing-stage">
+        <canvas ref={canvasRef} className={`drawing-canvas ${enabled ? '' : 'drawing-disabled'}`} aria-label="Draw with your mouse, stylus or finger" />
+        <div className="drawing-watermark" aria-hidden="true"><span>leave a little</span><strong>something behind.</strong><span className="drawing-watermark-small">click + drag to draw ✳</span></div>
+        <span className="corner-mark corner-tl">+</span><span className="corner-mark corner-tr">+</span><span className="corner-mark corner-bl">+</span><span className="corner-mark corner-br">+</span>
+      </div>
+      <div className="drawing-toolbar">
+        <div className="toolbar-colors" aria-label="Pencil colors">{inkColors.map(c => <button key={c.value} type="button" title={c.name} aria-label={`${c.name} pencil`} aria-pressed={ink === c.value} onClick={() => setInk(c.value)} className={`color-dot ${ink === c.value ? 'selected' : ''}`} style={{ '--swatch': c.value }} />)}</div>
+        <span className="toolbar-rule" />
+        <button className="tool-button" type="button" onClick={undo} disabled={strokeCount === 0} title="Undo last stroke"><RotateCcw size={15} /> <span>undo</span></button>
+        <button className="tool-button" type="button" onClick={clear} disabled={strokeCount === 0} title="Clear drawing"><Trash2 size={15} /> <span>clear</span></button>
+        <button className={`tool-button mode-button ${enabled ? 'is-active' : ''}`} type="button" onClick={() => setEnabled(e => !e)} aria-pressed={enabled}><Pencil size={15} /> <span>{enabled ? 'draw on' : 'draw off'}</span></button>
       </div>
     </div>
-    <div className="flex-none w-80 h-80">
-      <div className="w-full h-full rounded-full overflow-hidden border-4 border-white shadow-xl">
-        <img src="/JeiaSo_Headshot.jpg" alt="Jeia So" className="w-full h-full object-cover" />
-      </div>
-    </div>
-  </div>
-</section>
+  );
+}
 
-      {/* Research Section */}
-      <section id="research" className="bg-white/50 backdrop-blur-sm py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-bold mb-12 flex items-center gap-3">
-            research ﾟ+*:ꔫ:*﹤
-          </h2>
+function SectionHeading({ index, kicker, title, note }) {
+  return <div className="section-heading"><div><span className="eyebrow">{index} / {kicker}</span><h2>{title}<span className="pink-period">.</span></h2></div><span className="hand-note">{note}</span></div>;
+}
 
-          {/* Research 1 */}
-          <div className="mb-12 p-8 bg-white rounded-2xl shadow-lg">
-            <h3 className="text-2xl font-bold text-purple-600 mb-3">
-              Manufacturing and mechanics of 3D printed woven domes
-            </h3>
-            <p className="text-sm text-gray-600 mb-4 font-semibold">
-              June 2025: Summer Undergraduate Research Program (SURP), Samueli Research Scholars
-            </p>
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="flex-1">
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Created CAD models of woven shells using SolidWorks and simulated their behavior under indentation using Abaqus FEA. 
-                  Fabricated shells with the UltiMaker S5 Fused Deposition Modeling 3D Printer using TPU and PVA filament. 
-                  Tested printed samples against manually woven samples to verify that they have the same behavior under indentation. 
-                  Once verified, produced designs manually infeasible to produce and tested to discover new mechanical behaviors.
-                </p>
-                <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 border-l-4 border-yellow-400 p-4 rounded-r-lg mb-4">
-                  <p className="text-gray-700 font-semibold">
-                    🏆 First Place Best Poster Award and Research Presentation Honorable Mention!
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  <a href="https://drive.google.com/file/d/1eeUwMGLN8WFmXxJquU1SwAg6ZmSr8_fg/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Research Journal</a>
-                  <a href="https://drive.google.com/file/d/1s_JpJRAaWY_l13-_h5D5Hjck3oEBxcoo/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Poster</a>
-                  <a href="https://drive.google.com/file/d/1Icubpum0WNAE4NQvhcMv6eTpGyR5jOBc/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Presentation</a>
-                </div>
-              </div>
-              <div className="flex-shrink-0">
-                <div className="w-144 h-96 bg-gradient-to-br from-purple-200 to-pink-200 rounded-lg flex items-center justify-center text-4xl shadow-md">
-                  <img src="/shell.gif" alt="surp" className="w-full h-full object-cover" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-          {/* Research 2 */}
-          <div className="p-8 bg-white rounded-2xl shadow-lg">
-            <h3 className="text-2xl font-bold text-purple-600 mb-3">
-              Generating synthetic acoustic emissions from material damage
-            </h3>
-            <p className="text-sm text-gray-600 mb-4 font-semibold">
-              July 2023: UCSB Summer Research Academies, Track 6: Decoding the Black Box
-            </p>
-            <p className="text-gray-700 leading-relaxed mb-4">
-              Conducted research with two other students under the guidance of PhD students. 
-              Researched machine learning algorithms, and developed a program capable of producing the sound made when an object 
-              is broken to help with structural monitoring and material testing.
-
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a href="https://docs.google.com/document/d/1xjN5wKOKfAcAd5AorJRHQzJotGT6L9aF6UKblV2_8I0/edit?usp=drivesdk" className="text-sm text-blue-600 hover:text-blue-700 underline">View Research Paper</a>
-              <a href="https://docs.google.com/presentation/d/1RWF7IT34EElPWP2nnUTv3scwTptuB9F0Ha5p9slhLUs/edit?usp=drivesdk" className="text-sm text-blue-600 hover:text-blue-700 underline">View Presentation</a>
-            </div>
-          </div>
-
-          {/* Research 3 */}
-          <div className="p-8 bg-white rounded-2xl shadow-lg">
-            <h3 className="text-2xl font-bold text-purple-600 mb-3">
-              Novel tools used in human-swarm interaction
-            </h3>
-            <p className="text-sm text-gray-600 mb-4 font-semibold">
-              July 2022: California State Summer School for Math and Science (COSMOS) at UCSC
-            </p>
-            <p className="text-gray-700 leading-relaxed mb-4">
-              Researched and summarized the applications of swarm robotics. 
-              Designed and wrote an informal research poster with two other students.
-            </p>
-            <a href="https://drive.google.com/file/d/16CUVf1rmexZoogBpK_1fBijQj27L7zX0/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Poster</a>
-          </div>
-        </div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-bold mb-12 flex items-center gap-3">
-            my projects ⋆ ˚｡⋆୨୧˚
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-
-            {/* Desk Photobooth */}
-            <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-xl font-bold text-pink-600 mb-2">Desk Photobooth</h3>
-              <p className="text-sm text-gray-600 mb-3 font-semibold">July 2026: Personal Project</p>
-              <div className="bg-gradient-to-br from-blue-200 to-cyan-200 rounded-2xl overflow-hidden mb-4">
-                <img src="/demo.gif" alt="demo" className="w-full h-auto" />
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                Developed a complete Raspberry Pi based photobooth system integrating a camera module and thermal printer, with custom wiring using WAGO connectors and soldered electrical connections. Designed and manufactured a custom photobooth enclosure in SolidWorks using additive manufacturing (3D printing), and created the user interface and visual assets for the interactive experience.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a href="https://docs.google.com/document/d/12_0OCm_fwv0Zps05empZ7g9PkuUX66wCv1pk4OmJLpI/edit?usp=sharing" className="text-sm text-blue-600 hover:text-blue-700 underline">View Project Documentation</a>
-              </div>  
-              <div className="flex flex-wrap gap-3">
-                <a href="https://github.com/jeiaso/raspberry-photobooth" className="text-sm text-blue-600 hover:text-blue-700 underline">Access GitHub</a>
-              </div>
-            </div>
-
-          
-            {/* PetaLux */}
-            <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-xl font-bold text-pink-600 mb-2">PetaLux</h3>
-              <p className="text-sm text-gray-600 mb-3 font-semibold">May 2026: Creative Labs @ UCLA Project</p>
-              <div className="bg-gradient-to-br from-blue-200 to-cyan-200 rounded-2xl overflow-hidden mb-4">
-                <img src="/flower.gif" alt="flower" className="w-full h-auto" />
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                Led team of 8 students across engineering disciplines and experience levels to build a mechanical flower lamp that turns on at
-                user indicated times. Developed screw and helical gear system to create blooming motion of petals, and guided material selection 
-                to optimize the aesthetics and make the physical and app interface intuitive for users.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a href="https://docs.google.com/presentation/d/1veKpVZcJVTOzE55h0ptMOnYDZeinHBmWzTgwCi1aTko/edit?usp=sharing" className="text-sm text-blue-600 hover:text-blue-700 underline">View Demo Day Presentation</a>
-              </div>  
-            </div>
-
-            {/* ThermoSense
-            <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-xl font-bold text-pink-600 mb-2">ThermoSense</h3>
-              <p className="text-sm text-gray-600 mb-3 font-semibold">January 2026: Creative Labs @ UCLA Project</p>
-              <div className="bg-gradient-to-br from-blue-200 to-cyan-200 rounded-2xl overflow-hidden mb-4">
-                <img src="/thermosense.png" alt="thermosense" className="w-full h-auto" />
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                Collaborated with seven other students to build a desk fan that monitors surroundings to maintain a user set temperature.
-                Created CAD model of desk fan including electronics housing. 
-                Assisted with electronic configuration and project marketing, and received mentorship from industry professionals.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a href="https://docs.google.com/presentation/d/1GGw0YDN4rU4RGcjI4jODf_Td0wIyoUAw/edit?usp=sharing&ouid=109467473150855159667&rtpof=true&sd=true" className="text-sm text-blue-600 hover:text-blue-700 underline">View Final Presentation</a>
-              </div>  
-            </div> */}
-
-            {/* Drone Project */}
-            <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-xl font-bold text-pink-600 mb-2">Drone</h3>
-              <p className="text-sm text-gray-600 mb-3 font-semibold">March 2025: Engineering 1 Project</p>
-              <div className="bg-gradient-to-br from-blue-200 to-cyan-200 rounded-2xl overflow-hidden mb-4">
-                <img src="/drone.avif" alt="drone" className="w-full h-auto" />
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                Designed, prototyped, and tested a drone optimized for speed and maneuverability. 
-                Created a CAD model of the drone using Fusion 360 software with 3 other students, 
-                and led construction and electronics management.
-              </p>
-              <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 border-l-4 border-yellow-400 p-4 rounded-r-lg mb-4">
-                <p className="text-gray-700 font-semibold">
-                  *Currently I am an instructor for this Engineering 1 class and teach undergraduate students introductory CAD, 3D printing, and electronics through this project!
-                </p>
-              </div>
-            </div>
-
-            {/* Micromouse */}
-            <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-xl font-bold text-pink-600 mb-2">Micromouse</h3>
-              <p className="text-sm text-gray-600 mb-3 font-semibold">September 2024: IEEE Project</p>
-              <div className="bg-gradient-to-br from-purple-200 to-pink-200 rounded-2xl overflow-hidden mb-4">
-                <img src="/mm.png" alt="mm" className="w-full h-auto" />
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed">
-                Created circuit schematic and designed printed circuit board using KiCAD. 
-                Chose and soldered surface mount devices and through hole components. 
-                Programmed maze solving algorithm using PID controller algorithm on CubeIDE.
-              </p>
-            </div>
-
-            {/* PCB Design */}
-            <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-xl font-bold text-pink-600 mb-2">PCB Design: Decision Maker</h3>
-              <p className="text-sm text-gray-600 mb-3 font-semibold">March 2024: Honors Digital Electronics Project</p>
-              <div className="bg-gradient-to-br from-green-200 to-teal-200 rounded-2xl overflow-hidden mb-4">
-                <img src="/8ball.png" alt="8ball" className="w-full h-auto" />
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed mb-3">
-                Designed and prototyped a printed circuit board (PCB) that helps the user make a decision or answer a question. 
-                Function mimics that of a magic 8 ball.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a href="https://drive.google.com/file/d/1lXibV16pjCSTEqPKoAZqpG72rVY5jK6e/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Project Demo</a>
-                <a href="https://docs.google.com/document/d/1b_niQjHHpxlo4deRGw7PoqTlz-bQVxWBJ4ucOS8r-PQ/edit?tab=t.0" className="text-sm text-blue-600 hover:text-blue-700 underline">View Documentation</a>
-              </div>            
-            </div>
-
-            {/* CENSE */}
-            <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-xl font-bold text-pink-600 mb-2">CENSE: Crowd Sense</h3>
-              <p className="text-sm text-gray-600 mb-3 font-semibold">April 2023: Dublin Engineering Project</p>
-              <div className="bg-gradient-to-br from-orange-200 to-red-200 rounded-2xl overflow-hidden mb-4">
-                <img src="/cense.jpg" alt="cense" className="w-full h-auto" />
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed mb-3">
-                Created a sensor system used to monitor room capacity. 
-                Designed the interface of a connected website that would display the room capacity and generate analytics 
-                telling users when a room is likely to be full. Designed project logo and presentation materials.
-              </p>
-              <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 border-l-4 border-yellow-400 p-4 rounded-r-lg mb-4">
-                  <p className="text-gray-700 font-semibold">
-                    🏆 Top 30 Projects at the 2023 DEDA Engineering Competition!
-                  </p>
-              </div>
-              <a href="https://drive.google.com/file/d/1Ayj9Dwch33BfMiX2iTt1Xse702xu9hZ9/view" className="text-sm text-blue-600 hover:text-blue-700 underline">View Documentation</a>
-            </div>
-
-            {/* Robotics */}
-            <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow md:col-span-2">
-              <h3 className="text-xl font-bold text-pink-600 mb-2">VEX Robotics Robot: 5327SWAGon</h3>
-              <p className="text-sm text-gray-600 mb-3 font-semibold">
-                April 2022 - April 2023: Gael Force Robotics at Dublin High School
-              </p>
-              <div className="grid md:grid-cols-2 gap-8 mb-4">
-                <img src="/robot.png" alt="robot" className="w-full h-72 object-cover rounded-2xl" />
-                <img src="/states.png" alt="states" className="w-full h-72 object-cover rounded-2xl" />
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed mb-3">
-                Led team of 15 engineering students across different grades and experience levels. Designed, prototyped, and built subsystems
-                optimized for the 2022-2023 VEX game Spin Up, including drivetrain, roller, conveyor belt, and fly wheel mechanisms. Completed all project documentation. 
-                Mentored first year interns.
-              </p>
-              <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 border-l-4 border-yellow-400 p-4 rounded-r-lg mb-4">
-                  <p className="text-gray-700 font-semibold">
-                    🏆 2x Excellence Award Winner + Design Award Winner at State Championships + Qualified to 2022-23 VEX World Championships!
-                  </p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <a href="https://docs.google.com/presentation/d/1wVfwRzYSYwz4N3A3Uk0cnaeJ6crQhOLYICYAlhmDv4A/edit?usp=sharing" className="text-sm text-blue-600 hover:text-blue-700 underline">View Notebook/Documentation</a>
-              </div> 
-            </div>
-
-            {/* Productivity Points
-            <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow md:col-span-2">
-              <h3 className="text-xl font-bold text-pink-600 mb-2">Productivity Points: COVID Interactive Story</h3>
-              <p className="text-sm text-gray-600 mb-3 font-semibold">
-                October 2020 - November 2020: Computer Science Essentials Project
-              </p>
-              <div className="flex gap-4 mb-4">
-                <div className="w-32 h-40 bg-gradient-to-br from-indigo-200 to-purple-200 rounded-lg flex items-center justify-center text-4xl">
-                  📱
-                </div>
-                <div className="w-32 h-40 bg-gradient-to-br from-pink-200 to-rose-200 rounded-lg flex items-center justify-center text-4xl">
-                  🎨
-                </div>
-                <div className="w-32 h-40 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-lg flex items-center justify-center text-4xl">
-                  ✏️
-                </div>
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed mb-3">
-                Designed an interactive story app encouraging users to use their time productively during quarantine 
-                by awarding points based on their decisions made. All artwork was hand-drawn. App developed using MIT App Inventor.
-              </p>
-              <a href="https://docs.google.com/document/d/1bFh9uz6_mJyjWci3zQRUlIUNJe16WOwJycIqxFh8w0Q/edit?usp=sharing" className="text-sm text-blue-600 hover:text-blue-700 underline">View Documentation</a>
-            </div> */}
-          </div>
-
-          <div className="mt-8 text-center">
-            <a href="https://sites.google.com/view/jeiaso/about-me" 
-               className="inline-block px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full font-semibold hover:shadow-lg transition-shadow">
-              Explore more technical projects from high school →
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Design Work Section */}
-      <section id="design" className="bg-white/50 backdrop-blur-sm py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-bold mb-6 flex items-center gap-3">
-            design work 
-            <span className="text-3xl">‧₊˚❀༉‧₊˚.</span>
-          </h2>
-          <p className="text-gray-700 leading-relaxed mb-12 text-lg">
-            i first started engaging with the communities around me through art; this included advocacy graphics for clubs 
-            as we navigated the pandemic online, to annual school and event merchandise. below is a gallery of some of my 
-            favorite pieces i've worked on! hover over the picture to learn more about the piece, what is was used for, 
-            and what tools were used in its creation.
-          </p>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { image: '/kapwa26.png', title: 'Design Tool: Figma' },
-              { image: '/ewi.jpg', color: 'from-purple-300 to-indigo-300', title: 'Design Tool: Figma' },
-              { image: 'kapwa25.jpg', color: 'from-blue-300 to-cyan-300', title: 'Design Tool: Procreate' },
-              { image: '/dial.jpg', color: 'from-yellow-300 to-orange-300', title: 'Design Tool: Procreate' }
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="relative aspect-square rounded-lg shadow-md overflow-hidden cursor-pointer"
-                onMouseEnter={() => setHoveredImage(idx)}
-                onMouseLeave={() => setHoveredImage(null)}
-              >
-                <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
-                {hoveredImage === idx && (
-                  <div className="absolute inset-0 bg-black/70 rounded-lg flex items-center justify-center p-4">
-                    <p className="text-white text-center font-semibold">{item.title}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <a href="https://www.behance.net/jeiaso" 
-               className="inline-block px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full font-semibold hover:shadow-lg transition-shadow">
-              Explore my full graphic design portfolio →
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Personal Art Section */}
-      <section id="art" className="py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-bold mb-6 flex items-center gap-3">
-            personal art 
-            <span className="text-3xl">♥*♡∞:｡.｡</span>
-          </h2>
-          <p className="text-gray-700 leading-relaxed mb-12 text-lg">
-            in my free time, i love drawing my friends and family through traditional and digital art; 
-            to me, it's my way of showing others exactly how loved they are from my perspective. 
-            below are my favorite pieces so far!
-          </p>
-          <div className="space-y-12">
-            <div className="grid md:grid-cols-2 gap-8 mb-4">
-              {/* Digital Portrait */}
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div className="bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 rounded-2x1 overflow-hidden">
-                  <img src="/jibbies.avif" alt="jibbies" className="w-full h-auto" />
-                </div>
-                <div className="p-6">
-                  <p className="text-gray-700 text-lg">
-                    digital portrait of my siblings and i (fun fact: i'm the youngest of three!)
-                  </p>
-                </div>
-              </div>
-
-              {/* Traditional Drawing */}
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-              <div className="bg-gradient-to-br from-yellow-200 via-orange-200 to-red-200 rounded-2xl overflow-hidden">
-                <img src="/youmei.avif" alt="youmei" className="w-full h-auto" />
-              </div>
-                <div className="p-6">
-                  <p className="text-gray-700 text-lg">
-                    traditional drawing of my favorite picture of my best friend and i :)
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gradient-to-r from-pink-100 to-purple-100 py-8 mt-16">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-gray-600">
-            ☆.｡.:* last updated 7/22/2026 ｡･:*:･ﾟ★,｡･:*:･ﾟ☆
-          </p>
-        </div>
-      </footer>
+export default function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [lightbox, setLightbox] = useState(null);
+  useEffect(() => {
+    const onKeyDown = e => { if (e.key === 'Escape') setLightbox(null); };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
+  useEffect(() => { document.body.style.overflow = lightbox ? 'hidden' : ''; return () => { document.body.style.overflow = ''; }; }, [lightbox]);
+  return (
+    <div className="site-shell">
+      <header className="site-header"><a className="wordmark" href="#top" aria-label="Jeia So, back to top">jeia so<span>✳</span></a><nav className={`site-nav ${menuOpen ? 'nav-open' : ''}`} aria-label="Main navigation"><a onClick={() => setMenuOpen(false)} href="#work">work</a><a onClick={() => setMenuOpen(false)} href="#sketchbook">sketchbook</a><a onClick={() => setMenuOpen(false)} href="#about">about</a><a onClick={() => setMenuOpen(false)} href="mailto:jeia@ucla.edu" className="nav-contact">say hello <ArrowUpRight size={14}/></a></nav><button className="mobile-menu" type="button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} onClick={() => setMenuOpen(v => !v)}>{menuOpen ? <X/> : <Menu/>}</button></header>
+      <main id="top">
+        <section className="hero content-width"><div className="hero-topline"><span>PERSONAL PORTFOLIO — VOL. 01</span><span>ENGINEER × DESIGNER × MAKER</span></div><div className="hero-intro"><FloatingSketches /><div className="hero-copy"><span className="eyebrow">HI THERE, WELCOME TO MY LITTLE CORNER OF THE INTERNET</span><h1>things i've made,<br/><em>and things i'm making<span>.</span></em></h1><p>engineering / design / everything in between</p><div className="hero-actions"><a href="#work" className="primary-link">explore my work <ArrowDown size={16}/></a><a href="#sketchbook" className="quiet-link">or peek at my sketchbook <ArrowUpRight size={15}/></a></div></div></div><div className="hero-bottom"><span>DESIGNED WITH CURIOSITY & A LITTLE PINK</span><span>SCROLL TO EXPLORE ↓</span></div></section>
+        <section className="canvas-section content-width"><SketchCanvas /></section>
+        <section className="work-section content-width" id="work"><SectionHeading index="01" kicker="SELECTED WORK" title="things i've made" note="from idea → reality"/><div className="projects-grid">{projects.map(p => <article className="project-card" key={p.number}><div className="project-image-wrap"><img src={p.image} alt={`${p.title} project`} loading="lazy" /><span className="project-stamp">{p.number} / {p.year}</span></div><div className="project-meta"><span>{p.type}</span><span>{p.year}</span></div><div className="project-title-row"><h3>{p.title}</h3>{p.link && <a className="round-arrow" href={p.link} target="_blank" rel="noreferrer" aria-label={`View ${p.title} project details`}><ArrowUpRight size={19}/></a>}</div><p className="project-summary">{p.summary}</p><span className="project-scribble">↳ {p.note}</span></article>)}</div><p className="work-footnote">more projects and case studies are coming to the sketchbook soon ✳</p></section>
+        <section className="sketchbook-section" id="sketchbook"><div className="content-width"><SectionHeading index="02" kicker="ON PAPER & SCREEN" title="a peek inside" note="made with love ♡"/><p className="section-description">not everything starts in CAD. sometimes it starts with a pencil, a little curiosity, and a blank page.</p><div className="art-grid">{artwork.map((a,i) => <button className={`art-sheet art-sheet-${i+1}`} key={a.src} type="button" onClick={() => setLightbox(a)} aria-label={`View ${a.title}`}><div className="art-image"><img src={a.src} loading="lazy" alt={a.title}/></div><div className="art-caption"><span>{a.title}</span><span>{a.detail} ↗</span></div></button>)}</div><a className="text-link" href="https://www.behance.net/jeiaso" target="_blank" rel="noreferrer">more of my design work on behance <ArrowUpRight size={16}/></a></div></section>
+        <section className="about-section content-width" id="about"><SectionHeading index="03" kicker="BEHIND THE PAGES" title="a little about me" note="nice to meet you!"/><div className="about-grid"><div className="about-big">a little bit of <span>engineering</span>, a little bit of <span>art</span>, and a lot of curiosity.</div><div className="about-copy"><p>i'm studying mechanical engineering at UCLA, where i get to explore my interests in robotics, product design, research, and all the things in between.</p><p>i especially love the messy middle of making — sketching, prototyping, breaking things, learning why, and trying again.</p><div className="about-links"><a href="https://github.com/jeiaso" target="_blank" rel="noreferrer"><Github size={17}/> github <ArrowUpRight size={14}/></a><a href="https://linkedin.com/in/jeiaso" target="_blank" rel="noreferrer"><Linkedin size={17}/> linkedin <ArrowUpRight size={14}/></a><a href="mailto:jeia@ucla.edu"><Mail size={17}/> email <ArrowUpRight size={14}/></a></div></div></div></section>
+      </main>
+      <footer className="site-footer"><div className="content-width footer-inner"><div><span className="footer-title">have an idea? let's make something <em>together.</em></span><a className="footer-email" href="mailto:jeia@ucla.edu">jeia@ucla.edu <MoveUpRight size={22}/></a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} JEIA SO</span><span>MADE WITH ♡, CAFFEINE, AND CURIOSITY</span><a href="#top">BACK TO TOP ↑</a></div></div></footer>
+      {lightbox && <div className="lightbox" role="dialog" aria-modal="true" aria-label={lightbox.title} onClick={() => setLightbox(null)}><button type="button" onClick={() => setLightbox(null)} aria-label="Close image" className="lightbox-close"><X size={24}/></button><figure onClick={e => e.stopPropagation()}><img src={lightbox.src} alt={lightbox.title}/><figcaption>{lightbox.title} — {lightbox.detail}</figcaption></figure></div>}
     </div>
   );
 }

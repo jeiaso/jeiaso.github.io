@@ -1,0 +1,18 @@
+.hero-intro { position: relative; isolation: isolate; }
+.floating-sketch-layer { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.floating-sketch-anchor { position: absolute; }
+.floating-sketch { width: 100%; height: auto; display: block; user-select: none; will-change: transform; }
+.float-robot { width: clamp(155px, 18vw, 235px); right: 6%; top: 7%; transform: rotate(6deg); }
+.float-flower { width: clamp(120px, 14vw, 185px); right: 26%; bottom: 7%; transform: rotate(-7deg); }
+.float-gear { width: clamp(86px, 10vw, 132px); right: 0%; bottom: 9%; transform: rotate(8deg); }
+.hero-copy { position: relative; z-index: 1; max-width: 740px; }
+@media(max-width: 900px) {
+  .float-robot { right: 1%; top: 5%; opacity: 0.6; }
+  .float-flower { right: 17%; bottom: 2%; opacity: 0.6; }
+  .float-gear { display: none; }
+}
+@media(max-width: 650px) {
+  .float-robot { width: 105px; right: -10px; top: 5%; opacity: 0.2; }
+  .float-flower { width: 90px; right: 5%; bottom: 1%; opacity: 0.2; }
+}
+@media(prefers-reduced-motion: reduce) { .floating-sketch { will-change: auto; } }
