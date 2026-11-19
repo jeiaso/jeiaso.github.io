@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.a32ad4a3.css",
+    "main.css": "/static/css/main.a99ac35b.css",
     "main.js": "/static/js/main.2bdcd3e5.js",
     "static/js/453.15a626a8.chunk.js": "/static/js/453.15a626a8.chunk.js",
+    "static/media/jeia-handwriting.ttf": "/static/media/jeia-handwriting.a05bce5e10265f4b31f9.ttf",
     "index.html": "/index.html",
-    "main.a32ad4a3.css.map": "/static/css/main.a32ad4a3.css.map",
+    "main.a99ac35b.css.map": "/static/css/main.a99ac35b.css.map",
     "main.2bdcd3e5.js.map": "/static/js/main.2bdcd3e5.js.map",
     "453.15a626a8.chunk.js.map": "/static/js/453.15a626a8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a32ad4a3.css",
+    "static/css/main.a99ac35b.css",
     "static/js/main.2bdcd3e5.js"
   ]
 }
