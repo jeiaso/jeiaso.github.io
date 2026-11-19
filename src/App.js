@@ -1,160 +1,123 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, ArrowDown, Github, Linkedin, Mail, Pencil, RotateCcw, Trash2, Menu, X, MoveUpRight } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ArrowUpRight, ArrowDown, Github, Linkedin, Mail, Menu, X, ChevronRight } from 'lucide-react';
 import './App.css';
 import FloatingSketches from './FloatingSketches';
+import SharedSketchWall from './SharedSketchWall';
+import originalContent from './originalContent';
 
-const projects = [
-  { number: '01', title: 'PetaLux', type: 'PRODUCT DESIGN / MECHANISMS', year: '2026', image: '/flower.gif', note: 'a flower that blooms with light', summary: 'Led an interdisciplinary team in creating a mechanical blooming lamp, from concept and gear-driven motion to the final prototype.', link: 'https://docs.google.com/presentation/d/1veKpVZcJVTOzE55h0ptMOnYDZeinHBmWzTgwCi1aTko/edit?usp=sharing' },
-  { number: '02', title: 'Woven shells', type: 'RESEARCH / ADDITIVE MANUFACTURING', year: '2024–26', image: '/shell.gif', note: 'soft structures, new possibilities', summary: 'Exploring the mechanics of 3D-printed woven structures through CAD, FEA, fabrication, and physical testing.', link: 'https://drive.google.com/file/d/1s_JpJRAaWY_l13-_h5D5Hjck3oEBxcoo/view' },
-  { number: '03', title: 'ThermoSense', type: 'PRODUCT DESIGN / ELECTRONICS', year: '2026', image: '/thermosense.png', note: 'a smarter desk companion', summary: 'Designed the CAD and electronics housing for a temperature-responsive desktop fan.', link: 'https://docs.google.com/presentation/d/1GGw0YDN4rU4RGcjI4jODf_Td0wIyoUAw/edit?usp=sharing' },
-  { number: '04', title: 'FPV drone', type: 'MECHANICAL DESIGN / PROTOTYPING', year: '2025', image: '/drone.avif', note: 'made to move', summary: 'Modeled, built, and tested a custom drone optimized for maneuverability and speed.', link: null },
-];
+const { items, design_intro, art_intro, design_images, art_images, about_intro, about_current, more_link, behance } = originalContent;
+const filters = ['All', 'Research', 'Projects', 'Previously hidden'];
 
-const artwork = [
-  { src: '/youmei.avif', title: 'a moment worth keeping', detail: 'traditional drawing' },
-  { src: '/jibbies.avif', title: 'the people i love', detail: 'digital portrait' },
-  { src: '/kapwa26.png', title: 'kapwa', detail: 'graphic design' },
-  { src: '/dial.jpg', title: 'visual explorations', detail: 'graphic design' },
-];
-
-function SketchCanvas() {
-  const canvasRef = useRef(null);
-  const strokesRef = useRef([]);
-  const currentRef = useRef(null);
-  const [ink, setInk] = useState('#242424');
-  const inkRef = useRef(ink);
-  const [strokeCount, setStrokeCount] = useState(0);
-  const [enabled, setEnabled] = useState(true);
-  const enabledRef = useRef(true);
-  const inkColors = [{ name: 'graphite', value: '#242424' }, { name: 'soft gray', value: '#99938f' }, { name: 'pink', value: '#dc7da2' }];
-
-  useEffect(() => { inkRef.current = ink; }, [ink]);
-  useEffect(() => { enabledRef.current = enabled; }, [enabled]);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const context = canvas.getContext('2d');
-    const render = () => {
-      const bounds = canvas.getBoundingClientRect();
-      context.clearRect(0, 0, bounds.width, bounds.height);
-      for (const stroke of strokesRef.current) {
-        context.strokeStyle = stroke.color;
-        context.fillStyle = stroke.color;
-        context.lineWidth = 2.1;
-        context.lineCap = 'round';
-        context.lineJoin = 'round';
-        const pts = stroke.points;
-        if (pts.length === 1) {
-          context.beginPath();
-          context.arc(pts[0].x * bounds.width, pts[0].y * bounds.height, 1.3, 0, Math.PI * 2);
-          context.fill();
-        } else {
-          context.beginPath();
-          pts.forEach((p, i) => i === 0 ? context.moveTo(p.x * bounds.width, p.y * bounds.height) : context.lineTo(p.x * bounds.width, p.y * bounds.height));
-          context.stroke();
-        }
-      }
-    };
-    const resize = () => {
-      const bounds = canvas.getBoundingClientRect();
-      const ratio = window.devicePixelRatio || 1;
-      canvas.width = Math.round(bounds.width * ratio);
-      canvas.height = Math.round(bounds.height * ratio);
-      context.setTransform(ratio, 0, 0, ratio, 0, 0);
-      render();
-    };
-    const position = (event) => {
-      const r = canvas.getBoundingClientRect();
-      return { x: (event.clientX - r.left) / r.width, y: (event.clientY - r.top) / r.height };
-    };
-    const down = (event) => {
-      if (!enabledRef.current || (event.pointerType === 'mouse' && event.button !== 0)) return;
-      currentRef.current = { color: inkRef.current, points: [position(event)] };
-      strokesRef.current.push(currentRef.current);
-      canvas.setPointerCapture(event.pointerId);
-      render();
-      setStrokeCount(strokesRef.current.length);
-    };
-    const move = (event) => {
-      if (!currentRef.current) return;
-      currentRef.current.points.push(position(event));
-      render();
-    };
-    const up = () => { currentRef.current = null; };
-    const observer = new ResizeObserver(resize);
-    observer.observe(canvas);
-    canvas.addEventListener('pointerdown', down);
-    canvas.addEventListener('pointermove', move);
-    canvas.addEventListener('pointerup', up);
-    canvas.addEventListener('pointercancel', up);
-    resize();
-    canvas._renderDrawing = render;
-    return () => {
-      observer.disconnect();
-      canvas.removeEventListener('pointerdown', down);
-      canvas.removeEventListener('pointermove', move);
-      canvas.removeEventListener('pointerup', up);
-      canvas.removeEventListener('pointercancel', up);
-      delete canvas._renderDrawing;
-    };
-  }, []);
-
-  const undo = () => {
-    strokesRef.current.pop();
-    setStrokeCount(strokesRef.current.length);
-    canvasRef.current?._renderDrawing?.();
-  };
-  const clear = () => {
-    strokesRef.current = [];
-    setStrokeCount(0);
-    canvasRef.current?._renderDrawing?.();
-  };
-
-  return (
-    <div className="drawing-wrap" id="draw" aria-label="Interactive sketchbook drawing canvas">
-      <div className="drawing-head"><span>FIG. 001 — AN OPEN CANVAS</span><span className="drawing-head-right">YOUR TURN TO CREATE ↘</span></div>
-      <div className="drawing-stage">
-        <canvas ref={canvasRef} className={`drawing-canvas ${enabled ? '' : 'drawing-disabled'}`} aria-label="Draw with your mouse, stylus or finger" />
-        <div className="drawing-watermark" aria-hidden="true"><span>leave a little</span><strong>something behind.</strong><span className="drawing-watermark-small">click + drag to draw ✳</span></div>
-        <span className="corner-mark corner-tl">+</span><span className="corner-mark corner-tr">+</span><span className="corner-mark corner-bl">+</span><span className="corner-mark corner-br">+</span>
-      </div>
-      <div className="drawing-toolbar">
-        <div className="toolbar-colors" aria-label="Pencil colors">{inkColors.map(c => <button key={c.value} type="button" title={c.name} aria-label={`${c.name} pencil`} aria-pressed={ink === c.value} onClick={() => setInk(c.value)} className={`color-dot ${ink === c.value ? 'selected' : ''}`} style={{ '--swatch': c.value }} />)}</div>
-        <span className="toolbar-rule" />
-        <button className="tool-button" type="button" onClick={undo} disabled={strokeCount === 0} title="Undo last stroke"><RotateCcw size={15} /> <span>undo</span></button>
-        <button className="tool-button" type="button" onClick={clear} disabled={strokeCount === 0} title="Clear drawing"><Trash2 size={15} /> <span>clear</span></button>
-        <button className={`tool-button mode-button ${enabled ? 'is-active' : ''}`} type="button" onClick={() => setEnabled(e => !e)} aria-pressed={enabled}><Pencil size={15} /> <span>{enabled ? 'draw on' : 'draw off'}</span></button>
-      </div>
-    </div>
-  );
+function Links({ links }) {
+  if (!links || !links.length) return null;
+  return <div className="original-links">{links.map(({url,label},i)=><a key={i} href={url} target="_blank" rel="noopener noreferrer">{label} <ArrowUpRight size={15}/></a>)}</div>;
 }
 
-function SectionHeading({ index, kicker, title, note }) {
-  return <div className="section-heading"><div><span className="eyebrow">{index} / {kicker}</span><h2>{title}<span className="pink-period">.</span></h2></div><span className="hand-note">{note}</span></div>;
+function ProjectDetail({ project, onClose }) {
+  useEffect(() => {
+    if (!project) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (event) => { if (event.key === 'Escape') onClose(); };
+    window.addEventListener('keydown',onKey);
+    return () => { document.body.style.overflow = previous; window.removeEventListener('keydown',onKey); };
+  }, [project, onClose]);
+  if (!project) return null;
+  return <div className="detail-overlay" onMouseDown={onClose} role="presentation">
+    <section className="detail-panel" role="dialog" aria-modal="true" aria-labelledby="detail-title" onMouseDown={event=>event.stopPropagation()}>
+      <button className="detail-close" onClick={onClose} aria-label="Close project"><X size={22}/></button>
+      <span className="eyebrow">{project.category}{project.archived ? ' / previously hidden in original code' : ''}</span>
+      <h2 id="detail-title">{project.title}</h2><p className="detail-subtitle">{project.date}</p>
+      {project.images.map((image,i)=><img className="detail-image" src={image.startsWith('/')?image:`/${image}`} alt={`${project.title} ${i+1}`} key={image}/>)}
+      <h3>Original project description</h3>
+      <p className="original-description">{project.description}</p>
+      {project.award && <p className="project-award">{project.award}</p>}
+      {project.note && <p className="project-note">{project.note}</p>}
+      <Links links={project.links}/>
+    </section>
+  </div>;
+}
+
+function Gallery({ images, onOpen, design=false }) {
+  return <div className="art-grid">{images.map((item,i)=><button key={i} className="art-sheet" onClick={()=>onOpen(item)} aria-label={`View image ${i+1}`}>
+    <div className="art-image"><img src={item.src.startsWith('/')?item.src:`/${item.src}`} alt={item.label} loading="lazy"/></div>
+    <div className="art-caption"><strong>{design?`Design study ${String(i+1).padStart(2,'0')}`:item.label}</strong>{design&&<span>{item.label}</span>}</div>
+  </button>)}</div>;
 }
 
 export default function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [lightbox, setLightbox] = useState(null);
-  useEffect(() => {
-    const onKeyDown = e => { if (e.key === 'Escape') setLightbox(null); };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, []);
-  useEffect(() => { document.body.style.overflow = lightbox ? 'hidden' : ''; return () => { document.body.style.overflow = ''; }; }, [lightbox]);
-  return (
-    <div className="site-shell">
-      <header className="site-header"><a className="wordmark" href="#top" aria-label="Jeia So, back to top">jeia so<span>✳</span></a><nav className={`site-nav ${menuOpen ? 'nav-open' : ''}`} aria-label="Main navigation"><a onClick={() => setMenuOpen(false)} href="#work">work</a><a onClick={() => setMenuOpen(false)} href="#sketchbook">sketchbook</a><a onClick={() => setMenuOpen(false)} href="#about">about</a><a onClick={() => setMenuOpen(false)} href="mailto:jeia@ucla.edu" className="nav-contact">say hello <ArrowUpRight size={14}/></a></nav><button className="mobile-menu" type="button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} onClick={() => setMenuOpen(v => !v)}>{menuOpen ? <X/> : <Menu/>}</button></header>
-      <main id="top">
-        <section className="hero content-width"><div className="hero-topline"><span>PERSONAL PORTFOLIO — VOL. 01</span><span>ENGINEER × DESIGNER × MAKER</span></div><div className="hero-intro"><FloatingSketches /><div className="hero-copy"><span className="eyebrow">HI THERE, WELCOME TO MY LITTLE CORNER OF THE INTERNET</span><h1>things i've made,<br/><em>and things i'm making<span>.</span></em></h1><p>engineering / design / everything in between</p><div className="hero-actions"><a href="#work" className="primary-link">explore my work <ArrowDown size={16}/></a><a href="#sketchbook" className="quiet-link">or peek at my sketchbook <ArrowUpRight size={15}/></a></div></div></div><div className="hero-bottom"><span>DESIGNED WITH CURIOSITY & A LITTLE PINK</span><span>SCROLL TO EXPLORE ↓</span></div></section>
-        <section className="canvas-section content-width"><SketchCanvas /></section>
-        <section className="work-section content-width" id="work"><SectionHeading index="01" kicker="SELECTED WORK" title="things i've made" note="from idea → reality"/><div className="projects-grid">{projects.map(p => <article className="project-card" key={p.number}><div className="project-image-wrap"><img src={p.image} alt={`${p.title} project`} loading="lazy" /><span className="project-stamp">{p.number} / {p.year}</span></div><div className="project-meta"><span>{p.type}</span><span>{p.year}</span></div><div className="project-title-row"><h3>{p.title}</h3>{p.link && <a className="round-arrow" href={p.link} target="_blank" rel="noreferrer" aria-label={`View ${p.title} project details`}><ArrowUpRight size={19}/></a>}</div><p className="project-summary">{p.summary}</p><span className="project-scribble">↳ {p.note}</span></article>)}</div><p className="work-footnote">more projects and case studies are coming to the sketchbook soon ✳</p></section>
-        <section className="sketchbook-section" id="sketchbook"><div className="content-width"><SectionHeading index="02" kicker="ON PAPER & SCREEN" title="a peek inside" note="made with love ♡"/><p className="section-description">not everything starts in CAD. sometimes it starts with a pencil, a little curiosity, and a blank page.</p><div className="art-grid">{artwork.map((a,i) => <button className={`art-sheet art-sheet-${i+1}`} key={a.src} type="button" onClick={() => setLightbox(a)} aria-label={`View ${a.title}`}><div className="art-image"><img src={a.src} loading="lazy" alt={a.title}/></div><div className="art-caption"><span>{a.title}</span><span>{a.detail} ↗</span></div></button>)}</div><a className="text-link" href="https://www.behance.net/jeiaso" target="_blank" rel="noreferrer">more of my design work on behance <ArrowUpRight size={16}/></a></div></section>
-        <section className="about-section content-width" id="about"><SectionHeading index="03" kicker="BEHIND THE PAGES" title="a little about me" note="nice to meet you!"/><div className="about-grid"><div className="about-big">a little bit of <span>engineering</span>, a little bit of <span>art</span>, and a lot of curiosity.</div><div className="about-copy"><p>i'm studying mechanical engineering at UCLA, where i get to explore my interests in robotics, product design, research, and all the things in between.</p><p>i especially love the messy middle of making — sketching, prototyping, breaking things, learning why, and trying again.</p><div className="about-links"><a href="https://github.com/jeiaso" target="_blank" rel="noreferrer"><Github size={17}/> github <ArrowUpRight size={14}/></a><a href="https://linkedin.com/in/jeiaso" target="_blank" rel="noreferrer"><Linkedin size={17}/> linkedin <ArrowUpRight size={14}/></a><a href="mailto:jeia@ucla.edu"><Mail size={17}/> email <ArrowUpRight size={14}/></a></div></div></div></section>
-      </main>
-      <footer className="site-footer"><div className="content-width footer-inner"><div><span className="footer-title">have an idea? let's make something <em>together.</em></span><a className="footer-email" href="mailto:jeia@ucla.edu">jeia@ucla.edu <MoveUpRight size={22}/></a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} JEIA SO</span><span>MADE WITH ♡, CAFFEINE, AND CURIOSITY</span><a href="#top">BACK TO TOP ↑</a></div></div></footer>
-      {lightbox && <div className="lightbox" role="dialog" aria-modal="true" aria-label={lightbox.title} onClick={() => setLightbox(null)}><button type="button" onClick={() => setLightbox(null)} aria-label="Close image" className="lightbox-close"><X size={24}/></button><figure onClick={e => e.stopPropagation()}><img src={lightbox.src} alt={lightbox.title}/><figcaption>{lightbox.title} — {lightbox.detail}</figcaption></figure></div>}
-    </div>
-  );
+  const [filter,setFilter] = useState('All');
+  const [selected,setSelected] = useState(null);
+  const [art,setArt] = useState(null);
+  const [menu,setMenu] = useState(false);
+  const visible = items.filter(item => filter==='All' ? !item.archived : filter==='Previously hidden' ? item.archived : item.category===filter && !item.archived);
+  useEffect(()=>{const onKey=e=>{if(e.key==='Escape')setArt(null)};window.addEventListener('keydown',onKey);return()=>window.removeEventListener('keydown',onKey)},[]);
+
+  return <div className="site-shell">
+    <header className="site-header">
+      <a href="#top" className="wordmark">jeia so<span>✳</span></a>
+      <button className="mobile-menu" aria-label="Toggle navigation" onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button>
+      <nav className={menu?'site-nav nav-open':'site-nav'}>
+        <a href="#work" onClick={()=>setMenu(false)}>work</a>
+        <a href="#design" onClick={()=>setMenu(false)}>design</a>
+        <a href="#art" onClick={()=>setMenu(false)}>art</a>
+        <a href="#about" onClick={()=>setMenu(false)}>about</a>
+        <a className="nav-contact" href="mailto:jeia@ucla.edu">get in touch <ArrowUpRight size={15}/></a>
+      </nav>
+    </header>
+    <main id="top">
+      <section className="hero content-width">
+        <div className="hero-topline"><span>PERSONAL PORTFOLIO / JEIA SO</span><span>ENGINEERING × DESIGN × ART</span></div>
+        <div className="hero-intro"><FloatingSketches/><div className="hero-copy">
+          <span className="eyebrow">A COLLECTION OF THINGS I'VE CREATED</span>
+          <h1>things i've made,<br/><em>and things i'm making<span>.</span></em></h1>
+          <p>Engineering / design / everything in between.</p>
+          <div className="hero-actions"><a className="primary-link" href="#work">explore my work <ArrowDown size={17}/></a><a className="quiet-link" href="#art">see my art <ArrowUpRight size={16}/></a></div>
+        </div></div>
+        <div className="hero-bottom"><span>MADE WITH CURIOSITY</span><span>SCROLL TO EXPLORE ↓</span></div>
+      </section>
+
+      <section className="work-section content-width" id="work">
+        <div className="section-heading"><div><span className="eyebrow">01 / ORIGINAL PROJECT ARCHIVE</span><h2>Research & projects<span>.</span></h2></div><p>Descriptions, dates, links, and awards preserved from my original portfolio.</p></div>
+        <div className="filter-bar" aria-label="Filter projects">{filters.map(f=><button key={f} className={filter===f?'filter active':'filter'} onClick={()=>setFilter(f)}>{f}</button>)}</div>
+        <div className="projects-grid">{visible.map((project,i)=><article className="project-card" key={project.title}>
+          <button className="project-cover" onClick={()=>setSelected(project)} aria-label={`Read ${project.title}`}>
+            {project.images.length?<img src={project.images[0].startsWith('/')?project.images[0]:`/${project.images[0]}`} alt={project.title} loading="lazy"/>:<div className="project-placeholder"><span>{project.category.toUpperCase()} / {String(i+1).padStart(2,'0')}</span><strong>{project.title}</strong><small>Read the original project details</small></div>}
+            <span className="cover-index">{String(i+1).padStart(2,'0')}</span>
+          </button>
+          <div className="project-category">{project.category}{project.archived && ' / ARCHIVE'}<span>{project.date}</span></div>
+          <button className="project-name" onClick={()=>setSelected(project)}><span>{project.title}</span><ArrowUpRight size={22}/></button>
+          <p className="project-intro">{project.description}</p>
+          {project.award && <p className="project-award">{project.award}</p>}
+          {project.note && <p className="project-note">{project.note}</p>}
+          <Links links={project.links}/>
+          <button className="read-more" onClick={()=>setSelected(project)}>View complete entry <ChevronRight size={16}/></button>
+        </article>)}</div>
+        <a className="text-link" href={more_link} target="_blank" rel="noopener noreferrer">Explore more technical projects from high school <ArrowUpRight size={16}/></a>
+      </section>
+
+      <section className="wall-section content-width" id="wall"><div className="section-heading"><div><span className="eyebrow">02 / INTERACTIVE</span><h2>Leave a mark<span>.</span></h2></div><p>A page that grows with its visitors.</p></div><SharedSketchWall/></section>
+
+      <section className="sketchbook-section" id="design"><div className="content-width">
+        <div className="section-heading"><div><span className="eyebrow">03 / DESIGN WORK</span><h2>Design work<span>.</span></h2></div></div>
+        <p className="section-original-intro">{design_intro}</p><Gallery images={design_images} onOpen={setArt} design/>
+        <a className="text-link" href={behance} target="_blank" rel="noopener noreferrer">Explore my full graphic design portfolio <ArrowUpRight size={16}/></a>
+      </div></section>
+
+      <section className="sketchbook-section art-personal-section" id="art"><div className="content-width">
+        <div className="section-heading"><div><span className="eyebrow">04 / PERSONAL ART</span><h2>Personal art<span>.</span></h2></div></div>
+        <p className="section-original-intro">{art_intro}</p><Gallery images={art_images} onOpen={setArt}/>
+      </div></section>
+
+      <section className="about-section content-width" id="about"><div className="section-heading"><div><span className="eyebrow">05 / ABOUT ME</span><h2>Hi, I'm Jeia<span>.</span></h2></div></div>
+        <div className="about-grid"><div><img className="about-headshot" src="/JeiaSo_Headshot.jpg" alt="Jeia So"/></div><div className="about-copy">
+          <p>{about_intro}</p><p>{about_current}</p>
+          <div className="about-links"><a href="mailto:jeia@ucla.edu"><Mail size={18}/> jeia@ucla.edu</a><a href="https://linkedin.com/in/jeiaso" target="_blank" rel="noopener noreferrer"><Linkedin size={18}/> LinkedIn</a><a href="https://github.com/jeiaso" target="_blank" rel="noopener noreferrer"><Github size={18}/> GitHub</a></div>
+        </div></div>
+      </section>
+    </main>
+    <footer className="site-footer"><div className="content-width"><span className="footer-kicker">THANKS FOR STOPPING BY</span><h2>Let's make something <em>together.</em></h2><a href="mailto:jeia@ucla.edu" className="footer-email">jeia@ucla.edu <ArrowUpRight/></a><div className="footer-bottom"><span>© {new Date().getFullYear()} JEIA SO</span><span>ENGINEERING × DESIGN × ART</span><a href="#top">BACK TO TOP ↑</a></div></div></footer>
+    <ProjectDetail project={selected} onClose={()=>setSelected(null)}/>
+    {art && <div className="art-lightbox" onMouseDown={()=>setArt(null)} role="presentation"><button onClick={()=>setArt(null)} aria-label="Close artwork"><X/></button><img src={art.src.startsWith('/')?art.src:`/${art.src}`} alt={art.label} onMouseDown={e=>e.stopPropagation()}/></div>}
+  </div>;
 }

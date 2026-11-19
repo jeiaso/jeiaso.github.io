@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# Jeia So portfolio — original descriptions and links restored
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This build preserves the minimalist editorial redesign with DM Sans / Instrument Serif, floating sketches, art sections, and the shared visitor sketch wall. It replaces the reconstructed project summaries with **exact project descriptions, dates, awards, and external links extracted from the original `App.js` you uploaded on November 19, 2026**. Whitespace in sentences is normalized, but the wording and link URLs are not rewritten.
 
-## Available Scripts
+## Installing in your existing React / Create React App project
 
-In the project directory, you can run:
+1. **Back up** your current `src/App.js` and `src/App.css` first.
+2. Copy all files in this ZIP's `src/` into your existing project's `src/` folder. This includes **`originalContent.js`**, which holds the restored descriptions and links.
+3. Copy the included `public/sketches/` folder into the existing `public/sketches/`. Keep the rest of your original `public/` folder because it contains the actual project imagery.
+4. Keep your existing `package.json`, `src/index.js`, and `public/index.html`.
+5. Preview with `npm.cmd start`. If everything looks correct, commit/push and deploy with `npm.cmd run deploy` (assuming the existing gh-pages configuration remains intact).
 
-### `npm start`
+## What is restored
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+All **10 formerly visible entries**: three research entries, plus Desk Photobooth, PetaLux, Drone, Micromouse, PCB Design: Decision Maker, CENSE: Crowd Sense, and VEX Robotics Robot: 5327SWAGon. All original award/teaching callouts, original links, and original image names are retained. The site also restores the original About text and headshot, four graphic-design images and their original tool captions, and both personal artworks with original captions. The links to Behance and the older high-school project site remain.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**ThermoSense and Productivity Points** were present in the original source but inside JSX comments, so they were not visible on the old site. They are available via the **“Previously hidden”** archive filter, clearly marked as such.
 
-### `npm test`
+The original project links are also shown directly under each description, and the complete entry is available in a detail panel. The research/poster/documentation links have not been shortened or replaced.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Existing files needed for media
 
-### `npm run build`
+Keep: `public/shell.gif`, `public/demo.gif`, `public/flower.gif`, `public/thermosense.png`, `public/drone.avif`, `public/mm.png`, `public/8ball.png`, `public/cense.jpg`, `public/robot.png`, `public/states.png`, `public/kapwa26.png`, `public/ewi.jpg`, `public/kapwa25.jpg`, `public/dial.jpg`, `public/jibbies.avif`, `public/youmei.avif`, and `public/JeiaSo_Headshot.jpg`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Shared visitor sketch wall
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The visitor sketch wall is retained from the previous version. GitHub Pages cannot store submissions itself, so Supabase is still required for persistent drawings. Use the provided `supabase-setup.sql` and `.env.example` if you have not configured it already. Never commit a Supabase service-role key or your local `.env.local`. Public contributions need moderation/rate limits before a large public launch.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+No handwriting font is required; the CSS uses Google Fonts with local fallbacks. This package does not include your original media files, which must remain in your `public/` folder.
