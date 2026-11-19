@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { RotateCcw, Trash2 } from 'lucide-react';
 
 const URL = (process.env.REACT_APP_SUPABASE_URL || '').replace(/\/$/, '');
-const KEY = process.env.REACT_APP_SUPABASE_ANON_KEY || '';
+const KEY = process.env.REACT_APP_SUPABASE_ANON_KEY || process.env.REACT_APP_SUPABASE_PUBLISHABLE_KEY || '';
 const CONFIGURED = Boolean(URL && KEY);
 const COLORS = [
   { name: 'graphite', value: '#242424' },
@@ -155,7 +155,8 @@ export default function SharedSketchWall() {
   function clear() { strokes.current = []; updateDrawing(); }
 
   async function publish() {
-    if (!CONFIGURED || busy || !strokes.current.length) return;
+    if (!CONFIGURED) { setStatus('Site owner: connect Supabase using .env.local and redeploy to enable public sketch sharing.'); return; }
+    if (busy || !strokes.current.length) return;
     if (Date.now() - lastPost < 60000) { setStatus('please wait a minute before posting again.'); return; }
     const payload = validStrokes(strokes.current);
     if (!payload.length) return;
@@ -190,9 +191,10 @@ export default function SharedSketchWall() {
           <span className="toolbar-rule"/>
           <button className="tool-button" onClick={undo} disabled={!strokes.current.length} type="button"><RotateCcw size={16}/> undo</button>
           <button className="tool-button" onClick={clear} disabled={!strokes.current.length} type="button"><Trash2 size={16}/> clear</button>
-          <button className="sketchwall-publish" type="button" disabled={!CONFIGURED || busy || !strokes.current.length} onClick={publish}>{busy ? 'pinning...' : 'pin to wall ↗'}</button>
+          <button className="sketchwall-publish" type="button" disabled={busy || !strokes.current.length} onClick={publish}>{busy ? 'pinning...' : !CONFIGURED ? 'connect wall to pin ↗' : 'pin to wall ↗'}</button>
         </div>
-        <p className="sketchwall-note">sketches are <strong>public</strong> once pinned. please be kind. ♥ { !CONFIGURED && 'owner setup needed to enable sharing.' }</p>
+        {!CONFIGURED && <div className="sketchwall-setup" role="note"><strong>Shared wall is not connected yet.</strong>The site owner must create the Supabase sketches table, add the project URL and publishable key to .env.local, and redeploy. Drawings cannot be shared until this is configured.</div>}
+        <p className="sketchwall-note">sketches are <strong>public</strong> once pinned. please be kind. ♥ </p>
         {status && <p className="sketchwall-status" role="status">{status}</p>}
       </div>
       <div className="sketchwall-gallery" id="visitor-sketches">
