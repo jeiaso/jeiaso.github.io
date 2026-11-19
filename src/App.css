@@ -33,3 +33,16 @@ html, body, button, input, textarea, select, option {
 .project-meta, .about-copy, .section-description {
   font-size: max(15px, 1em);
 }
+
+/* all website text */
+html, body, button, input, textarea, select {
+  letter-spacing: -0.055em;
+  word-spacing: -0.035em;
+}
+
+/* homepage headline */
+.hero h1,
+.hero h1 em {
+  letter-spacing: -0.085em;
+  word-spacing: -0.055em;
+}
